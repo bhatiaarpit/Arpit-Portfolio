@@ -1,0 +1,5 @@
+/* index.css or global.css */
+.cursor-hover {
+  transform: translate(-50%, -50%) scale(2);
+  background-color: rgba(255, 255, 255, 0.2);
+}
