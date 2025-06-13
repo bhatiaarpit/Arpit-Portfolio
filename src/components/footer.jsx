@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import logo from "/ab2.png";
 
-const Footer = () => {
+const Footer = ({ onStartProject }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [currentYear] = useState(new Date().getFullYear());
@@ -209,7 +209,10 @@ const Footer = () => {
               </div>
 
               {/* CTA Button */}
-              <button className="group w-full px-6 py-3 bg-gradient-to-r from-sky-500 to-emerald-500 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl">
+              <button
+                className="group w-full px-6 py-3 bg-gradient-to-r from-sky-500 to-emerald-500 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                onClick={onStartProject}
+              >
                 <span className="relative z-10 flex items-center justify-center space-x-2">
                   <span>Start a Project</span>
                   <Zap size={16} className="group-hover:animate-pulse" />

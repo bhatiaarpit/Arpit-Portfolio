@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ onBookCall }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("Home");
   const [scrolled, setScrolled] = useState(false);
@@ -13,6 +13,12 @@ const Navbar = () => {
   const closeMenu = () => setIsOpen(false);
 
   const handleLinkClick = (label, to) => {
+    if (label === "Book a Call") {
+      onBookCall?.();
+      closeMenu();
+      return;
+    }
+
     setActiveLink(label);
     closeMenu();
 
