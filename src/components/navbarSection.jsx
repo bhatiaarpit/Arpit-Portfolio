@@ -2,23 +2,32 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const Navbar = ({ onBookCall }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("Home");
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Map pathnames to labels for syncing activeLink with URL
+  const pathToLabel = {
+    "/": "Home",
+    "/about": "About Me",
+    "/projects": "My Projects",
+    "/insights": "Insights",
+    "/more": "Explore More",
+  };
+
+  // Sync activeLink with current URL on mount and when location changes
+  useEffect(() => {
+    const label = pathToLabel[location.pathname];
+    if (label) setActiveLink(label);
+  }, [location.pathname]);
+
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
   const handleLinkClick = (label, to) => {
-    if (label === "Book a Call") {
-      onBookCall?.();
-      closeMenu();
-      return;
-    }
-
     setActiveLink(label);
     closeMenu();
 
