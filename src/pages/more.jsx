@@ -3,7 +3,7 @@ import ExploreMore from '../components/exploreMore'
 
 const more = () => {
   return (
-    <div><ExploreMore/> </div>
+    <div><ExploreMore/></div>
   )
 }
 
