@@ -29,7 +29,7 @@ const SkillsSection = () => {
     {
       title: "E-commerce",
       icon: "🛒",
-      skills: ["Shopify", "Shopify Plus", "Liquid", "Shopify CLI", "Theme Development", "App Development", "Webhooks", "Payment APIs"]
+      skills: ["Shopify", "Shopify Plus", "Liquid", "Shopify CLI", "Theme Development", "Shopify App Development", "Webhooks", "Payment APIs"]
     },
     {
       title: "Cloud & DevOps",
@@ -40,11 +40,6 @@ const SkillsSection = () => {
       title: "Tools & Others",
       icon: "🔧",
       skills: ["VS Code", "Postman", "Figma", "Photoshop", "Linux", "npm/yarn", "Webpack", "Vite"]
-    },
-    {
-      title: "Mobile & Cross-Platform",
-      icon: "📱",
-      skills: ["React Native", "Flutter", "Expo", "Ionic", "PWA", "Capacitor", "Cordova", "Xamarin"]
     }
   ];
 

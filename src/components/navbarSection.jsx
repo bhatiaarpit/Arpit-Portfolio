@@ -55,7 +55,7 @@ const Navbar = () => {
   // Define navigation links array to avoid duplication
   const navigationLinks = [
     { to: "/", label: "Home" },
-    { to: "#about-section", label: "About Me" },
+    { to: "/about", label: "About Me" },
     { to: "/projects", label: "My Projects" },
     { to: "/insights", label: "Insights" },
     { to: "/more", label: "Explore More" },
