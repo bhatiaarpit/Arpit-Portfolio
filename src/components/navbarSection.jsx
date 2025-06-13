@@ -52,6 +52,15 @@ const Navbar = () => {
     return () => document.body.classList.remove('overflow-hidden');
   }, [isOpen]);
 
+  // Define navigation links array to avoid duplication
+  const navigationLinks = [
+    { to: "/", label: "Home" },
+    { to: "#about-section", label: "About Me" },
+    { to: "/projects", label: "My Projects" },
+    { to: "/insights", label: "Insights" },
+    { to: "/more", label: "Explore More" },
+  ];
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
         ? 'bg-black/90 backdrop-blur-xl border-b border-gray-800/60 shadow-2xl'
@@ -81,34 +90,27 @@ const Navbar = () => {
 
           <div className="hidden md:flex items-center justify-center flex-1">
             <div className="flex items-center space-x-1 bg-gray-900/50 backdrop-blur-xl rounded-full px-4 py-1.5 border border-gray-700/60 shadow-2xl hover:bg-gray-900/60 transition-all duration-300">
-              {[
-                { to: "/", label: "Home" },
-                { to: "#about-section", label: "About Me" },
-                { to: "/projects", label: "My Projects" },
-                { to: "/insights", label: "Insights" },
-                { to: "/more", label: "Explore More" },
-              ]
-                .map((link) => (
-                  <button
-                    key={link.label}
-                    onClick={() => handleLinkClick(link.label, link.to)}
-                    className={`relative px-3 py-2 rounded-full text-sm font-medium transition-all duration-300 group ${activeLink === link.label
-                        ? "bg-gradient-to-r from-blue-500 to-sky-600 text-white shadow-lg scale-105"
-                        : "text-gray-300 hover:text-white hover:bg-gray-700/60"
-                      }`}
-                  >
-                    <span className="relative z-10">{link.label}</span>
-                    {activeLink === link.label && (
-                      <>
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-sky-600 rounded-full opacity-20 animate-pulse"></div>
-                        <div className="absolute inset-0 bg-white/10 rounded-full"></div>
-                      </>
-                    )}
-                    {activeLink !== link.label && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    )}
-                  </button>
-                ))}
+              {navigationLinks.map((link) => (
+                <button
+                  key={link.label}
+                  onClick={() => handleLinkClick(link.label, link.to)}
+                  className={`relative px-3 py-2 rounded-full text-sm font-medium transition-all duration-300 group ${activeLink === link.label
+                      ? "bg-gradient-to-r from-blue-500 to-sky-600 text-white shadow-lg scale-105"
+                      : "text-gray-300 hover:text-white hover:bg-gray-700/60"
+                    }`}
+                >
+                  <span className="relative z-10">{link.label}</span>
+                  {activeLink === link.label && (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-sky-600 rounded-full opacity-20 animate-pulse"></div>
+                      <div className="absolute inset-0 bg-white/10 rounded-full"></div>
+                    </>
+                  )}
+                  {activeLink !== link.label && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  )}
+                </button>
+              ))}
             </div>
           </div>
 
@@ -182,18 +184,12 @@ const Navbar = () => {
           </div>
 
           <nav className="flex flex-col items-center space-y-8">
-            {[
-              { to: "/", label: "Home" },
-              { to: "#about-section", label: "About Me" },
-              { to: "/projects", label: "My Projects" },
-              { to: "/insights", label: "Insights" },
-              { to: "/more", label: "Explore More" },
-            ].map((link, index) => (
+            {navigationLinks.map((link, index) => (
               <button
                 key={link.label}
-                onClick={() => handleLinkClick(link.label)}
+                onClick={() => handleLinkClick(link.label, link.to)}
                 className={`relative text-3xl font-bold transition-all duration-500 transform hover:scale-110 ${activeLink === link.label
-                    ? "text-transparent bg-gradient-to-r from-blue-400 to-sky-500 bg-clip-text"
+                    ? "bg-gradient-to-r from-blue-400 to-sky-500 bg-clip-text"
                     : "text-gray-300 hover:text-white"
                   }`}
                 style={{ animationDelay: `${index * 100}ms` }}
