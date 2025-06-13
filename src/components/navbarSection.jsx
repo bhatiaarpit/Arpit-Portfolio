@@ -42,10 +42,20 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+    // Clean up on unmount
+    return () => document.body.classList.remove('overflow-hidden');
+  }, [isOpen]);
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
         ? 'bg-black/90 backdrop-blur-xl border-b border-gray-800/60 shadow-2xl'
-        : 'bg-transparent'
+        : ''
       }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
@@ -135,16 +145,16 @@ const Navbar = () => {
       </div>
 
       <div
-        className={`md:hidden fixed inset-0 z-40 transition-all duration-500 ease-in-out ${isOpen ? "visible opacity-100" : "invisible opacity-0"
+        className={`md:hidden fixed inset-0 z-[999] transition-all duration-500 ease-in-out ${isOpen ? "visible opacity-100" : "invisible opacity-0"
           }`}
       >
         <div
-          className={`absolute inset-0 bg-black/95 backdrop-blur-xl transition-opacity duration-500 ${isOpen ? "opacity-100" : "opacity-0"
+          className={`absolute inset-0 bg-black backdrop-blur-xl transition-opacity duration-500 ${isOpen ? "opacity-100" : "opacity-0"
             }`}
           onClick={closeMenu}
         ></div>
 
-        <div className={`relative z-50 min-h-screen flex flex-col justify-center items-center transform transition-all duration-500 ${isOpen ? "translate-y-0 scale-100" : "translate-y-10 scale-95"
+        <div className={`bg-[#000] relative z-50 min-h-screen flex flex-col justify-center items-center transform transition-all duration-500 ${isOpen ? "translate-y-0 scale-100" : "translate-y-10 scale-95"
           }`}>
           <button
             className="absolute top-8 right-8 p-3 text-gray-300 hover:text-white focus:outline-none bg-gray-800/60 rounded-full hover:bg-gray-700/60 transition-all duration-200 backdrop-blur-sm"
@@ -174,10 +184,10 @@ const Navbar = () => {
           <nav className="flex flex-col items-center space-y-8">
             {[
               { to: "/", label: "Home" },
-              { to: "#about-section", label: "About" },
-              { to: "/projects", label: "Work" },
-              { to: "/blog", label: "Blog" },
-              { to: "/more", label: "More" },
+              { to: "#about-section", label: "About Me" },
+              { to: "/projects", label: "My Projects" },
+              { to: "/insights", label: "Insights" },
+              { to: "/more", label: "Explore More" },
             ].map((link, index) => (
               <button
                 key={link.label}
