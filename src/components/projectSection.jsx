@@ -188,22 +188,6 @@ const ProjectsSection = () => {
             </div>
           ))}
         </div>
-
-        {/* Enhanced Call to Action */}
-        <div className="mt-24 text-center">
-          <div className="inline-block">
-            <a
-              href="#contact"
-              className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-sky-500 via-emerald-500 to-cyan-500 text-white font-semibold hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-sky-500/25"
-            >
-              <span>Let's Build Something Amazing Together</span>
-              <div className="w-2 h-2 bg-white rounded-full group-hover:animate-pulse"></div>
-            </a>
-          </div>
-          <p className="text-gray-500 text-sm mt-4">
-            Ready to turn your ideas into reality?
-          </p>
-        </div>
       </div>
     </section>
   );
