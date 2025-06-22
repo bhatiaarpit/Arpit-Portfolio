@@ -99,12 +99,12 @@ useEffect(() => {
       }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          <div className="flex-shrink-0 group cursor-pointer">
-            <div className="relative overflow-hidden rounded-xl p-2 transition-all duration-300 hover:bg-white/5">
+          <div className="flex-shrink-0 cursor-pointer">
+            <div className="relative overflow-hidden rounded-xl p-2 transition-all duration-300">
               <img
                 src="/ab2.png"
                 alt="Arpit Bhatia Logo"
-                className="h-12 w-auto transition-all duration-300 group-hover:scale-110 filter drop-shadow-lg"
+                className="h-12 w-auto transition-all duration-300 drop-shadow-lg"
                 onError={(e) => {
                   e.target.style.display = 'none';
                   e.target.nextElementSibling.style.display = 'block';
