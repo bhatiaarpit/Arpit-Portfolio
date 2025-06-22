@@ -125,7 +125,7 @@ const SkillCard = ({ category, categoryIndex, isVisible }) => (
     className={`transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
     style={{ transitionDelay: `${categoryIndex * 150}ms` }}
   >
-    <div className="group relative bg-gray-900/40 backdrop-blur-xl rounded-2xl border border-gray-700/50 shadow-2xl hover:bg-gray-900/60 hover:border-sky-400/30 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-sky-500/10 h-full flex flex-col">
+    <div className="group relative bg-gray-900/40 backdrop-blur-xl rounded-2xl border border-gray-700/50 shadow-2xl md:hover:bg-gray-900/60 md:hover:border-sky-400/30 transition-all duration-300 md:hover:scale-[1.02] md:hover:shadow-xl md:hover:shadow-sky-500/10 h-full flex flex-col">
       
       {/* Card Header */}
       <div className="p-6 pb-4 flex-shrink-0">
@@ -133,11 +133,11 @@ const SkillCard = ({ category, categoryIndex, isVisible }) => (
           <div className="text-2xl group-hover:scale-110 transition-transform duration-300">
             {category.icon}
           </div>
-          <h3 className="text-xl font-bold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-sky-400 group-hover:to-emerald-500 group-hover:bg-clip-text transition-all duration-300">
+          <h3 className="text-xl font-bold text-white md:group-hover:text-transparent md:group-hover:bg-gradient-to-r md:group-hover:from-sky-400 md:group-hover:to-emerald-500 md:group-hover:bg-clip-text transition-all duration-300">
             {category.title}
           </h3>
         </div>
-        <div className="w-12 h-0.5 bg-gradient-to-r from-sky-400 to-emerald-500 group-hover:w-full transition-all duration-500"></div>
+        <div className="w-12 h-0.5 bg-gradient-to-r from-sky-400 to-emerald-500 md:group-hover:w-full transition-all duration-500"></div>
       </div>
 
       {/* Skills Container */}
@@ -202,9 +202,9 @@ const SkillTag = ({ skill, skillIndex, categoryIndex }) => (
 // ------------------------------
 const CallToAction = ({ isVisible }) => (
   <div className={`text-center transition-all duration-1000 delay-800 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-    <div className="inline-flex items-center gap-3 bg-gray-900/40 backdrop-blur-md rounded-full px-6 py-3 border border-gray-700/50 shadow-xl hover:bg-gray-900/60 hover:border-emerald-400/30 transition-all duration-300 group">
-      <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse group-hover:animate-ping"></div>
-      <span className="text-gray-300 text-sm font-medium group-hover:text-emerald-400 transition-colors duration-300">
+    <div className="inline-flex items-center gap-3 bg-gray-900/40 backdrop-blur-md rounded-full px-6 py-3 border border-gray-700/50 shadow-xl md:hover:bg-gray-900/60 md:hover:border-emerald-400/30 transition-all duration-300 group">
+      <div className="w-2 h-2 hidden md:block bg-emerald-400 rounded-full animate-pulse md:group-hover:animate-ping"></div>
+      <span className="text-gray-300 text-sm font-medium md:group-hover:text-emerald-400 transition-colors duration-300">
         Always ready to learn and explore new technologies
       </span>
     </div>
