@@ -57,15 +57,31 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add('overflow-hidden');
-    } else {
-      document.body.classList.remove('overflow-hidden');
+useEffect(() => {
+  if (isOpen) {
+    // Store current scroll position
+    const scrollY = window.scrollY;
+    
+    // Apply styles to prevent scrolling
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+  } else {
+    // Restore everything and scroll position
+    const scrollY = document.body.style.top;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+    
+    if (scrollY) {
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
     }
-    // Clean up on unmount
-    return () => document.body.classList.remove('overflow-hidden');
-  }, [isOpen]);
+  }
+}, [isOpen]);
 
   // Define navigation links array to avoid duplication
   const navigationLinks = [
