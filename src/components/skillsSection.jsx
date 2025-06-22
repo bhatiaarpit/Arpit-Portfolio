@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { FaPalette, FaCogs, FaShoppingCart, FaCloud, FaTools } from "react-icons/fa";
+import { MdWeb,  } from "react-icons/md";
 
 const SkillsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -18,36 +20,36 @@ const SkillsSection = () => {
   const skillCategories = [
     {
       title: "Frontend",
-      icon: "🎨",
+      icon: <MdWeb color="white" size={28} />,
       skills: ["React", "Next.js", "JavaScript", "TypeScript", "HTML5", "CSS3", "Tailwind CSS", "Redux"]
     },
     {
       title: "Backend",
-      icon: "⚙️",
+      icon: <FaCogs color="white" size={28} />,
       skills: ["Node.js", "Express.js", "MongoDB", "PostgreSQL", "REST APIs", "GraphQL", "JWT", "Socket.io"]
     },
     {
       title: "E-commerce",
-      icon: "🛒",
+      icon: <FaShoppingCart color="white" size={28} />,
       skills: ["Shopify", "Shopify Plus", "Liquid", "Shopify CLI", "Theme Development", "Shopify App Development", "Webhooks", "Payment APIs"]
     },
     {
       title: "Cloud & DevOps",
-      icon: "☁️",
+      icon: <FaCloud color="white" size={28} />,
       skills: ["AWS", "Docker", "Git", "GitHub Actions", "Vercel", "Netlify", "Firebase", "Heroku"]
     },
     {
       title: "Tools & Others",
-      icon: "🔧",
+      icon: <FaTools color="white" size={28} />,
       skills: ["VS Code", "Postman", "Figma", "Photoshop", "Linux", "npm/yarn", "Webpack", "Vite"]
     }
   ];
 
   return (
     <section
-      id="skills-section"
-      className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-950 to-black relative overflow-hidden py-20"
-    >
+  id="skills-section"
+  className="min-h-screen bg-gradient-to-tl from-[#06090f] via-[#0a0e19] to-black relative overflow-hidden py-20"
+>
       <BackgroundEffects />
       <div className="container mx-auto px-6 relative z-10 flex flex-col justify-center min-h-screen">
         <SectionHeader isVisible={isVisible} />
@@ -96,11 +98,6 @@ const SectionHeader = ({ isVisible }) => (
         Skills & Technologies
       </span>
     </h2>
-    <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-light">
-      Crafting digital solutions with a comprehensive toolkit of modern technologies that power
-      <span className="text-sky-400 font-medium"> scalable applications</span> and
-      <span className="text-emerald-400 font-medium"> seamless user experiences</span>.
-    </p>
   </div>
 );
 

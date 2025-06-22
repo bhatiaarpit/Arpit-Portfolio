@@ -13,9 +13,9 @@ const Navbar = () => {
   const pathToLabel = {
     "/": "Home",
     "/about": "About Me",
-    "/projects": "My Projects",
-    "/insights": "Insights",
-    "/more": "Explore More",
+    "/projects": "Projects",
+    // "/insights": "Insights",
+    // "/more": "Explore More",
   };
 
   // Sync activeLink with current URL on mount and when location changes
@@ -71,9 +71,9 @@ const Navbar = () => {
   const navigationLinks = [
     { to: "/", label: "Home" },
     { to: "/about", label: "About Me" },
-    { to: "/projects", label: "My Projects" },
-    { to: "/insights", label: "Insights" },
-    { to: "/more", label: "Explore More" },
+    { to: "/projects", label: "Projects" },
+    // { to: "/insights", label: "Insights" },
+    // { to: "/more", label: "Explore More" },
   ];
 
   return (
@@ -129,7 +129,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className="hidden md:flex items-center">
+          {/* <div className="hidden md:flex items-center">
             <button
               onClick={() => handleLinkClick("Book a Call")}
               className="group relative px-6 py-3 bg-gradient-to-r from-sky-500 to-cyan-600 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/25 shadow-lg"
@@ -141,7 +141,7 @@ const Navbar = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-sky-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
             </button>
-          </div>
+          </div> */}
 
           <div className="md:hidden">
             <button
@@ -216,13 +216,13 @@ const Navbar = () => {
               </button>
             ))}
 
-            <button
+            {/* <button
               onClick={() => handleLinkClick("Book a Call")}
               className="mt-12 px-10 py-4 bg-gradient-to-r from-sky-500 to-cyan-600 text-white text-xl font-semibold rounded-full hover:scale-105 transition-all duration-300 shadow-2xl flex items-center gap-3"
             >
               Book a Call
               <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-            </button>
+            </button> */}
           </nav>
 
           <div className="absolute top-1/4 left-10 w-32 h-32 bg-blue-500/20 rounded-full filter blur-xl animate-pulse"></div>

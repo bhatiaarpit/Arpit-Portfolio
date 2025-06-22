@@ -7,8 +7,8 @@ const Home = () => {
   return (
     <div className="font-mono h-full">
       <Hero />
-      <SkillsSection/>
       <Aboutme />
+      <SkillsSection/>
       {/* <GithubStreaksSection/> */}
     </div>
   );

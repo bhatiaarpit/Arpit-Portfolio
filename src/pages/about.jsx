@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import BackgroundEffects from "../components/backgroundEffect.jsx";
+import StatsSection from "../components/StatsSection.jsx";
+import ExperienceSection from "../components/ExperienceSection.jsx";
 
 const AboutMeSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -13,114 +16,123 @@ const AboutMeSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Experience data
+  // Experience data - Updated based on your profile
   const experiences = [
     {
-      role: "Full-stack Developer",
+      role: "SDE 1",
       company: "Marmeto",
-      period: "2023 - Present",
+      period: "Oct 2023 - Present",
       type: "Full-time",
-      description: "Specializing in e-commerce development with Shopify, React, and Node.js"
+      description: "Building scalable ecommerce solutions using HTML, CSS, JavaScript, React, Remix, Shopify Liquid, and Tailwind CSS"
     },
     {
-      role: "Frontend Developer",
-      company: "Previous Company",
-      period: "2022 - 2023",
-      type: "Contract",
-      description: "Built responsive web applications using React, TypeScript, and modern CSS"
+      role: "Frontend Trainee",
+      company: "Marmeto",
+      period: "Aug 2024 - Oct 2024",
+      type: "Internship",
+      description: "Completed 2-month traineeship, gaining hands-on experience with Shopify tech stack and ecommerce solutions"
     },
     {
-      role: "Web Developer",
-      company: "Freelance",
-      period: "2021 - 2022",
-      type: "Freelance",
-      description: "Delivered 50+ projects focusing on user experience and performance"
+      role: "Chairperson",
+      company: "IEEE Computer Society",
+      period: "Jun 2024 - Jan 2025",
+      type: "Leadership",
+      description: "Led technical initiatives and organized tech events at SR Institute of Management and Technology, Lucknow"
     }
   ];
 
-  // Work technologies
-  const workTech = ["JavaScript", "TypeScript", "HTML", "CSS", "React", "Redux", "NodeJS", "Express", "Postgres", "MongoDB", "GitHub", "Jira", "Heroku", "AWS"];
+  // Work technologies - Updated based on your skills
+  const workTech = ["JavaScript", "React", "Remix", "Shopify Liquid", "HTML", "CSS", "Tailwind CSS", "Node.js", "MongoDB", "Git", "Figma"];
   
-  // Fun technologies
-  const funTech = ["Rust", "Tailwind", "Java", "Spring", "Figma", "Whimsical", "Planetscale", "GraphQL", "Python", "FastAPI"];
+  // Fun technologies - Updated based on your profile
+  const funTech = ["Next.js", "TypeScript", "Python", "Java", "Canva", "UI/UX Design", "GraphQL", "AWS", "Docker"];
 
   return (
     <section
       id="about-section"
-      className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden pt-32 pb-20"
+      className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden pt-16 sm:pt-20 lg:pt-32 pb-12 sm:pb-16 lg:pb-20"
     >
       <BackgroundEffects />
 
-      <div className="container mx-auto px-6 relative z-10 max-w-6xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
         
         {/* Header */}
-        <div className={`mb-16 text-center transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <h1 className="text-5xl md:text-7xl font-black text-white mb-4">
+        <div className={`md:mx-8 mb-8 text-center transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white my-6">
             About<span className="text-blue-500">.</span>
           </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full"></div>
+          <div className="w-16 sm:w-20 lg:w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full"></div>
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 mb-16 lg:mb-20">
           
           {/* Profile Section */}
           <div className={`lg:col-span-2 transition-all duration-1000 transform delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <div className="bg-gray-800/20 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 hover:border-gray-600/50 transition-all duration-300">
+            <div className="bg-gray-800/20 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-gray-700/30 hover:border-gray-600/50 transition-all duration-300">
               
               {/* Greeting */}
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                  H
-                </div>
-                <div>
-                  <span className="text-gray-300 text-lg">
-                    Hey! I'm <span className="text-white font-semibold">Arpit</span>, if you haven't already gathered that by now.
+              <div className="flex items-start sm:items-center gap-3 mb-6">
+                {/* <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex-shrink-0">
+                </div> */}
+                <div className="min-w-0">
+                  <span className="text-gray-300 text-base sm:text-lg leading-relaxed">
+                    Hey! I'm <span className="text-white font-semibold">Arpit</span>
                   </span>
                 </div>
               </div>
 
-              {/* Main Description */}
-              <div className="space-y-4 text-gray-300 leading-relaxed">
+              {/* Updated Main Description */}
+              <div className="space-y-4 text-gray-300 leading-relaxed text-sm sm:text-base">
                 <p>
-                  I'm a passionate web developer from India, blending design and code to craft exceptional digital experiences. 
-                  I specialize in e-commerce development, particularly with <span className="text-green-400 font-semibold">Shopify</span>, 
-                  but love building with whatever tools are right for the job.
+                  <span className="text-white font-semibold text-lg sm:text-xl">Frontend Developer building fast, beautiful web experiences.</span>
                 </p>
                 
                 <p>
-                  Currently working full-time at <span className="text-emerald-400 font-semibold">Marmeto</span> while 
-                  completing my final year of studies. I also collaborate with design teams from time to time 
-                  (once a designer, always a designer, right?).
+                  Currently an SDE 1 at <span className="text-emerald-400 font-semibold">Marmeto</span> in Bengaluru, 
+                  specializing in e-commerce development with <span className="text-green-400 font-semibold">Shopify</span>, 
+                  <span className="text-blue-400 font-semibold"> React</span>, and modern frontend tools.
                 </p>
                 
                 <p>
-                  Outside of work, I still love to explore new technologies. Any given weekend you'll find me 
-                  building some cool projects ☁️ I even teach and mentor others if you're looking to learn!
+                  With experience across the <span className="text-cyan-400 font-semibold">MERN stack</span> and 
+                  custom Shopify development, I've helped build scalable solutions that drive real business results. 
+                  From leading tech communities to mentoring fellow developers, I'm passionate about both code and collaboration.
                 </p>
                 
-                <p className="text-blue-400">
-                  I'm passively looking for new opportunities where I can merge my love for code with my 
-                  creative passion. If you think you've got an opening that I might like, let's connect! 🔗
+                <p>
+                  I love turning ideas into clean, functional interfaces that users actually enjoy using.
+                </p>
+                
+                <p className="text-blue-400 font-medium">
+                  Let's build something amazing together!
                 </p>
               </div>
 
               {/* Social Links */}
-              <div className="mt-8 pt-6 border-t border-gray-700/50">
-                <div className="flex items-center gap-4">
-                  <span className="text-gray-400 font-medium">My links</span>
+              <div className="mt-6 sm:mt-8 pt-6 border-t border-gray-700/50">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                  <span className="text-gray-400 font-medium text-sm sm:text-base">My links</span>
                   <div className="flex gap-3">
-                    <a href="#" className="w-10 h-10 bg-gray-700/50 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors duration-300">
-                      <span className="text-white">in</span>
+                    <a href="https://www.linkedin.com/in/bhatiaarpit" className="w-10 h-10 bg-gray-700/50 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors duration-300 group" title="LinkedIn">
+                      <svg className="w-5 h-5 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                      </svg>
                     </a>
-                    <a href="#" className="w-10 h-10 bg-gray-700/50 hover:bg-gray-600 rounded-lg flex items-center justify-center transition-colors duration-300">
-                      <span className="text-white">gh</span>
+                    <a href="#" className="w-10 h-10 bg-gray-700/50 hover:bg-gray-600 rounded-lg flex items-center justify-center transition-colors duration-300 group" title="GitHub">
+                      <svg className="w-5 h-5 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                      </svg>
                     </a>
-                    <a href="#" className="w-10 h-10 bg-gray-700/50 hover:bg-blue-500 rounded-lg flex items-center justify-center transition-colors duration-300">
-                      <span className="text-white">x</span>
+                    <a href="#" className="w-10 h-10 bg-gray-700/50 hover:bg-blue-500 rounded-lg flex items-center justify-center transition-colors duration-300 group" title="Twitter/X">
+                      <svg className="w-4 h-4 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                      </svg>
                     </a>
-                    <a href="#" className="w-10 h-10 bg-gray-700/50 hover:bg-orange-600 rounded-lg flex items-center justify-center transition-colors duration-300">
-                      <span className="text-white">dr</span>
+                    <a href="https://arpitbhatia.com/" className="w-10 h-10 bg-gray-700/50 hover:bg-orange-600 rounded-lg flex items-center justify-center transition-colors duration-300 group" title="Portfolio">
+                      <svg className="w-5 h-5 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                      </svg>
                     </a>
                   </div>
                 </div>
@@ -132,12 +144,12 @@ const AboutMeSection = () => {
           <div className={`transition-all duration-1000 transform delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             
             {/* Work Tech */}
-            <div className="mb-8">
+            <div className="mb-6 lg:mb-8">
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-6 h-6 bg-blue-500 rounded flex items-center justify-center">
                   <span className="text-white text-sm">💼</span>
                 </div>
-                <h3 className="text-white font-semibold">Use at work</h3>
+                <h3 className="text-white font-semibold text-base sm:text-lg">Use at work</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {workTech.map((tech, index) => (
@@ -146,20 +158,20 @@ const AboutMeSection = () => {
               </div>
             </div>
 
-            {/* Fun Tech */}
+            {/* Fun Tech
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-6 h-6 bg-purple-500 rounded flex items-center justify-center">
                   <span className="text-white text-sm">🎮</span>
                 </div>
-                <h3 className="text-white font-semibold">Use for fun</h3>
+                <h3 className="text-white font-semibold text-base sm:text-lg">Use for fun</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {funTech.map((tech, index) => (
                   <TechBadge key={tech} tech={tech} delay={index * 50} variant="fun" />
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -179,7 +191,7 @@ const TechBadge = ({ tech, delay, variant = "work" }) => {
   
   return (
     <span
-      className={`px-3 py-1.5 text-sm font-medium rounded-lg border transition-all duration-300 cursor-default transform hover:scale-105 ${
+      className={`px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium rounded-lg border transition-all duration-300 cursor-default transform hover:scale-105 ${
         variant === "fun" 
           ? "bg-purple-900/20 text-purple-300 border-purple-700/30 hover:border-purple-500/50 hover:bg-purple-900/30" 
           : "bg-blue-900/20 text-blue-300 border-blue-700/30 hover:border-blue-500/50 hover:bg-blue-900/30"
@@ -195,124 +207,5 @@ const TechBadge = ({ tech, delay, variant = "work" }) => {
     </span>
   );
 };
-
-// Experience Section Component
-const ExperienceSection = ({ experiences, isVisible }) => {
-  return (
-    <div className={`mb-20 transition-all duration-1000 transform delay-600 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-          My <span className="text-blue-500">Experience</span>
-        </h2>
-        <p className="text-gray-400 max-w-2xl mx-auto">
-          Here's a timeline of my professional journey and the impact I've made along the way
-        </p>
-      </div>
-
-      <div className="relative">
-        {/* Timeline Line */}
-        <div className="absolute left-4 md:left-1/2 md:transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-cyan-500 to-emerald-500"></div>
-
-        {experiences.map((exp, index) => (
-          <ExperienceCard key={index} experience={exp} index={index} />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-// Experience Card Component
-const ExperienceCard = ({ experience, index }) => {
-  const [isCardVisible, setIsCardVisible] = useState(false);
-  const isEven = index % 2 === 0;
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsCardVisible(true);
-    }, 800 + (index * 200));
-    
-    return () => clearTimeout(timer);
-  }, [index]);
-
-  return (
-    <div className={`relative flex items-center mb-8 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-      {/* Timeline Dot */}
-      <div className="absolute left-4 md:left-1/2 md:transform md:-translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full border-4 border-gray-900 z-10 animate-pulse"></div>
-
-      {/* Card */}
-      <div className={`ml-12 md:ml-0 md:w-5/12 transition-all duration-700 transform ${
-        isCardVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-      } ${isEven ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}>
-        <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 border border-gray-700/30 hover:border-gray-600/50 hover:bg-gray-800/40 transition-all duration-300 group">
-          <div className="flex items-center justify-between mb-3">
-            <span className={`px-3 py-1 text-xs font-medium rounded-full ${
-              experience.type === 'Full-time' ? 'bg-green-900/30 text-green-400 border border-green-700/30' :
-              experience.type === 'Contract' ? 'bg-blue-900/30 text-blue-400 border border-blue-700/30' :
-              'bg-purple-900/30 text-purple-400 border border-purple-700/30'
-            }`}>
-              {experience.type}
-            </span>
-            <span className="text-gray-400 text-sm">{experience.period}</span>
-          </div>
-          
-          <h3 className="text-white font-semibold text-lg mb-1 group-hover:text-blue-400 transition-colors duration-300">
-            {experience.role}
-          </h3>
-          <p className="text-blue-400 font-medium mb-3">{experience.company}</p>
-          <p className="text-gray-300 text-sm leading-relaxed">{experience.description}</p>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Stats Section Component
-const StatsSection = ({ isVisible }) => {
-  const stats = [
-    { number: "3+", label: "Years Experience", color: "from-blue-500 to-cyan-500" },
-    { number: "50+", label: "Projects Delivered", color: "from-emerald-500 to-green-500" },
-    { number: "100%", label: "Client Satisfaction", color: "from-purple-500 to-pink-500" },
-    { number: "24/7", label: "Available Support", color: "from-orange-500 to-red-500" }
-  ];
-
-  return (
-    <div className={`transition-all duration-1000 transform delay-800 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {stats.map((stat, index) => (
-          <div key={index} className="text-center group">
-            <div className="relative overflow-hidden rounded-xl p-6 bg-gray-800/20 backdrop-blur-sm border border-gray-700/30 hover:border-gray-600/50 transition-all duration-300 group-hover:scale-105">
-              <div className={`text-3xl md:text-4xl font-black bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
-                {stat.number}
-              </div>
-              <div className="text-gray-400 text-sm font-medium">
-                {stat.label}
-              </div>
-              <div className={`absolute inset-0 bg-gradient-to-r ${stat.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-// Background Effects Component
-const BackgroundEffects = () => (
-  <>
-    <div className="absolute inset-0">
-      <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
-      <div className="absolute top-1/3 right-1/4 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"></div>
-      <div className="absolute bottom-1/3 left-1/3 w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping delay-1000"></div>
-      <div className="absolute top-1/2 right-1/3 w-1 h-1 bg-blue-400 rounded-full animate-pulse delay-2000"></div>
-      <div className="absolute bottom-1/4 right-1/5 w-2 h-2 bg-cyan-400 rounded-full animate-ping delay-700"></div>
-    </div>
-    
-    <div className="absolute inset-0">
-      <div className="absolute top-20 left-20 w-40 h-40 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-32 right-20 w-56 h-56 bg-gradient-to-r from-cyan-500/8 to-emerald-500/8 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      <div className="absolute top-1/2 left-10 w-32 h-32 bg-gradient-to-r from-emerald-500/12 to-blue-500/12 rounded-full blur-2xl animate-pulse delay-2000"></div>
-    </div>
-  </>
-);
 
 export default AboutMeSection;

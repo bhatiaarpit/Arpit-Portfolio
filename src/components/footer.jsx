@@ -225,7 +225,7 @@ const Footer = ({ onStartProject }) => {
                 <div className="text-center">
                   <div className="flex items-center justify-center space-x-1 text-sky-400">
                     <Code size={16} />
-                    <span className="text-lg font-bold">50+</span>
+                    <span className="text-lg font-bold">15+</span>
                   </div>
                   <div className="text-xs text-gray-500">Projects</div>
                 </div>

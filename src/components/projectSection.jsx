@@ -79,74 +79,109 @@ const ProjectsSection = () => {
   return (
     <section
       id="projects"
-      className="bg-gradient-to-br from-black via-gray-900 to-black text-white py-24 relative overflow-hidden"
+      className="bg-gradient-to-br from-black via-gray-900 to-black text-white py-32 relative overflow-hidden"
     >
-      {/* Decorative Blur Backgrounds */}
-      <div className="absolute top-[-50px] right-[-50px] w-[300px] h-[300px] bg-blue-500 opacity-10 blur-[120px] rounded-full z-0" />
-      <div className="absolute bottom-[-50px] left-[-50px] w-[300px] h-[300px] bg-purple-600 opacity-10 blur-[120px] rounded-full z-0" />
+      {/* Enhanced Decorative Blur Backgrounds */}
+      <div className="absolute top-[-100px] right-[-100px] w-[400px] h-[400px] bg-sky-500 opacity-10 blur-[150px] rounded-full z-0" />
+      <div className="absolute bottom-[-100px] left-[-100px] w-[400px] h-[400px] bg-emerald-500 opacity-10 blur-[150px] rounded-full z-0" />
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] bg-cyan-400 opacity-5 blur-[100px] rounded-full z-0" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-4">
-            My Work
-          </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-base md:text-lg">
-            A selection of projects where I’ve built high-performing, user-focused digital experiences.
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+        {/* Enhanced Header Section */}
+        <div className="text-center mb-20">
+          <div className="inline-block mb-6">
+            <span className="text-sky-400 text-sm font-medium tracking-wider uppercase mb-2 block">
+              Portfolio
+            </span>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-sky-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent leading-tight">
+              My Work
+            </h2>
+          </div>
+          <div className="w-24 h-1 bg-gradient-to-r from-sky-500 to-emerald-500 mx-auto mb-8 rounded-full"></div>
+          <p className="text-gray-400 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
+            A curated collection of projects showcasing my expertise in building 
+            <span className="text-sky-400 font-medium"> high-performing</span>, 
+            <span className="text-emerald-400 font-medium"> user-focused</span> digital experiences.
           </p>
         </div>
 
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+        {/* Enhanced Grid */}
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, idx) => (
             <div
               key={idx}
-              className="group bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 hover:shadow-2xl transition-all duration-300 overflow-hidden"
+              className="group bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 hover:border-white/20 hover:shadow-2xl hover:shadow-sky-500/10 transition-all duration-500 overflow-hidden hover:-translate-y-2"
             >
-              {/* Project Image */}
-              <div className="relative h-48 overflow-hidden">
+              {/* Enhanced Project Image */}
+              <div className="relative h-52 overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+                  className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Floating Action Buttons */}
+                <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 bg-sky-500/80 backdrop-blur-sm rounded-full hover:bg-sky-500 transition-colors duration-200"
+                  >
+                    <Eye size={16} className="text-white" />
+                  </a>
+                  <a
+                    href={project.code}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 bg-emerald-500/80 backdrop-blur-sm rounded-full hover:bg-emerald-500 transition-colors duration-200"
+                  >
+                    <Github size={16} className="text-white" />
+                  </a>
+                </div>
               </div>
 
-              {/* Content */}
-              <div className="p-6 space-y-4">
-                <h3 className="text-xl font-semibold text-white">{project.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{project.description}</p>
+              {/* Enhanced Content */}
+              <div className="p-8 space-y-5">
+                <h3 className="text-xl font-bold text-white group-hover:text-sky-300 transition-colors duration-300">
+                  {project.title}
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">
+                  {project.description}
+                </p>
 
-                {/* Tech Tags */}
+                {/* Enhanced Tech Tags */}
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="text-xs px-2 py-1 rounded-full bg-blue-600/10 text-blue-300 border border-blue-500/20"
+                      className="text-xs px-3 py-1.5 rounded-full bg-gradient-to-r from-sky-500/10 to-emerald-500/10 text-cyan-300 border border-sky-500/20 hover:border-sky-400/40 transition-colors duration-200"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                {/* Actions */}
-                <div className="flex justify-between items-center pt-4">
+                {/* Enhanced Actions */}
+                <div className="flex justify-between items-center pt-6 border-t border-white/10">
                   <a
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-blue-400 hover:text-white transition-colors duration-200"
+                    className="flex items-center gap-2 text-sky-400 hover:text-sky-300 transition-all duration-200 hover:scale-105"
                   >
-                    <Eye size={16} />
-                    <span className="text-sm">Demo</span>
+                    <Eye size={18} />
+                    <span className="text-sm font-medium">Live Demo</span>
                   </a>
                   <a
                     href={project.code}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-purple-400 hover:text-white transition-colors duration-200"
+                    className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-all duration-200 hover:scale-105"
                   >
-                    <Github size={16} />
-                    <span className="text-sm">Code</span>
+                    <Github size={18} />
+                    <span className="text-sm font-medium">Source Code</span>
                   </a>
                 </div>
               </div>
@@ -154,14 +189,20 @@ const ProjectsSection = () => {
           ))}
         </div>
 
-        {/* Call to Action */}
-        <div className="mt-20 text-center">
-          <a
-            href="#contact"
-            className="inline-block px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold hover:scale-105 transition-transform"
-          >
-            Let’s Build Something Together
-          </a>
+        {/* Enhanced Call to Action */}
+        <div className="mt-24 text-center">
+          <div className="inline-block">
+            <a
+              href="#contact"
+              className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-sky-500 via-emerald-500 to-cyan-500 text-white font-semibold hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-sky-500/25"
+            >
+              <span>Let's Build Something Amazing Together</span>
+              <div className="w-2 h-2 bg-white rounded-full group-hover:animate-pulse"></div>
+            </a>
+          </div>
+          <p className="text-gray-500 text-sm mt-4">
+            Ready to turn your ideas into reality?
+          </p>
         </div>
       </div>
     </section>
