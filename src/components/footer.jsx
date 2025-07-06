@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import logo from "/ab2.png";
 
-const Footer = ({ onStartProject }) => {
+const Footer = ({ onStartProject, onContactClick }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [currentYear] = useState(new Date().getFullYear());
@@ -61,12 +61,11 @@ const Footer = ({ onStartProject }) => {
   ];
 
   const quickLinks = [
-    { label: "About Me", href: "#about" },
-    { label: "Projects", href: "#projects" },
+    { label: "About Me", href: "/about" },
+    { label: "Projects", href: "/my-work#projects" },
     { label: "Skills", href: "#skills" },
-    { label: "Experience", href: "#experience" },
-    { label: "Contact", href: "#contact" },
-    { label: "Blog", href: "#blog" },
+    { label: "Experience", href: "/my-work#experience" },
+    { label: "Contact", href: "#contact", onClick: onContactClick }, // Add onClick
   ];
 
   const services = [
@@ -136,11 +135,11 @@ const Footer = ({ onStartProject }) => {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-200">
                   <Mail size={16} />
-                  <span className="text-sm">arpit@example.com</span>
+                  <span className="text-sm">arpitbhatia903@gmail.com</span>
                 </div>
                 <div className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-200">
                   <Phone size={16} />
-                  <span className="text-sm">+91 9876543210</span>
+                  <span className="text-sm">+91 8175967224</span>
                 </div>
                 <div className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-200">
                   <MapPin size={16} />
@@ -160,6 +159,7 @@ const Footer = ({ onStartProject }) => {
                     <a 
                       href={link.href}
                       className="text-gray-400 hover:text-white transition-all duration-200 hover:translate-x-2 inline-block"
+                      onClick={link.onClick ? (e) => { e.preventDefault(); link.onClick(); } : undefined}
                     >
                       {link.label}
                     </a>

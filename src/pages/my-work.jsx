@@ -5,6 +5,15 @@ const MyWorkSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeTab, setActiveTab] = useState("experience");
 
+  // Add this useEffect to sync tab with URL hash
+  useEffect(() => {
+    if (window.location.hash === "#projects") {
+      setActiveTab("projects");
+    } else if (window.location.hash === "#experience") {
+      setActiveTab("experience");
+    }
+  }, []);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setIsVisible(true),
@@ -136,7 +145,14 @@ const MyWorkSection = () => {
           {tabs.map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => {
+                setActiveTab(tab.id);
+                window.history.replaceState(
+                  null,
+                  "",
+                  `${window.location.pathname}#${tab.id}`
+                );
+              }}
               className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
                 activeTab === tab.id
                   ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/25'

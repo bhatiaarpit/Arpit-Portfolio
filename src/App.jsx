@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState } from "react";
 import Navbar from './components/navbarSection';
-import Footer from './components/footer';
+import Footer from "./components/footer";
 import Home from './pages/home';
 import About from './pages/about';
 // import Projects from './pages/projects';
@@ -38,7 +38,7 @@ function App() {
             </Routes>
           </div>
           <CustomCursor/>
-          <Footer onStartProject={() => setContactOpen(true)} />
+          <Footer onContactClick={() => setContactOpen(true)} />
           <ContactPopup isOpen={contactOpen} onClose={() => setContactOpen(false)} />
         </div>
       </div>
