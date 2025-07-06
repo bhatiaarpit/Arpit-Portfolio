@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // <-- Add this import
 import ContactPopup from "./contactForm";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentWord, setCurrentWord] = useState(0);
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const navigate = useNavigate(); // <-- Add this line
 
   const words = ["Fast", "Functional", "Future-Ready"];
 
@@ -81,7 +83,10 @@ const HeroSection = () => {
           {/* Call to Action */}
           <div className={`mt-12 transition-all duration-1000 delay-500 transform ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-600 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/25">
+              <button
+                className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-600 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/25"
+                onClick={() => navigate("/my-work")} // <-- Add this handler
+              >
                 <span className="relative z-10 flex items-center gap-2">
                   View My Work
                   <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
