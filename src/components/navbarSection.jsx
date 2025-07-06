@@ -100,7 +100,12 @@ useEffect(() => {
       }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          <div className="flex-shrink-0 cursor-pointer">
+          <a
+            href="https://arpitbhatia.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-shrink-0 cursor-pointer"
+          >
             <div className="relative overflow-hidden rounded-xl p-2 transition-all duration-300">
               <img
                 src="/ab2.png"
@@ -118,7 +123,7 @@ useEffect(() => {
               </div>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
             </div>
-          </div>
+          </a>
 
           <div className="hidden md:flex items-center justify-center flex-1">
             <div className="flex items-center space-x-1 bg-gray-900/50 backdrop-blur-xl rounded-full px-4 py-1.5 border border-gray-700/60 shadow-2xl hover:bg-gray-900/60 transition-all duration-300">
