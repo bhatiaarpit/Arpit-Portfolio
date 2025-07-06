@@ -55,10 +55,9 @@ const Footer = ({ onStartProject }) => {
   };
 
   const socialLinks = [
-    { icon: Github, href: "#", label: "GitHub", color: "hover:text-gray-300" },
-    { icon: Linkedin, href: "#", label: "LinkedIn", color: "hover:text-blue-400" },
-    { icon: Twitter, href: "#", label: "Twitter", color: "hover:text-blue-300" },
-    { icon: Mail, href: "#", label: "Email", color: "hover:text-red-400" },
+    { icon: Github, href: "https://github.com/bhatiaarpit", label: "GitHub", color: "hover:text-gray-300" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/bhatiaarpit", label: "LinkedIn", color: "hover:text-blue-400" },
+    { icon: Twitter, href: "https://x.com/arpit_bhatia_", label: "Twitter", color: "hover:text-blue-300" },
   ];
 
   const quickLinks = [

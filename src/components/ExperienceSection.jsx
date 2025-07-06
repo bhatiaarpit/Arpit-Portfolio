@@ -13,13 +13,10 @@ const ExperienceSection = ({ experiences, isVisible }) => {
         </p>
       </div>
 
-      {/* Experience Timeline */}
       <div className="max-w-4xl mx-auto px-4">
         <div className="relative">
-          {/* Desktop Timeline Line */}
           <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 via-cyan-500 to-emerald-500 rounded-full shadow-lg shadow-blue-500/30"></div>
           
-          {/* Mobile Timeline Line */}
           <div className="md:hidden absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-cyan-500 to-emerald-500 rounded-full"></div>
 
           {/* Experience Cards */}
@@ -41,9 +38,14 @@ const ExperienceSection = ({ experiences, isVisible }) => {
         <p className="text-gray-400 mb-6 text-lg">
           Want to know more about my experience?
         </p>
-        <button className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-3 rounded-full font-medium hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+        <a
+          href="https://drive.google.com/file/d/1UaChAJQPNYH8Uh2dOKvdALgdLyxb22pf/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-3 rounded-full font-medium hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+        >
           Download Resume
-        </button>
+        </a>
       </div>
     </section>
   );

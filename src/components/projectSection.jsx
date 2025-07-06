@@ -79,33 +79,13 @@ const ProjectsSection = () => {
   return (
     <section
       id="projects"
-      className="bg-gradient-to-br from-black via-gray-900 to-black text-white py-32 relative overflow-hidden"
+      className=" text-white relative overflow-hidden"
     >
       {/* Enhanced Decorative Blur Backgrounds */}
       <div className="absolute top-[-100px] right-[-100px] w-[400px] h-[400px] bg-sky-500 opacity-10 blur-[150px] rounded-full z-0" />
       <div className="absolute bottom-[-100px] left-[-100px] w-[400px] h-[400px] bg-emerald-500 opacity-10 blur-[150px] rounded-full z-0" />
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] bg-cyan-400 opacity-5 blur-[100px] rounded-full z-0" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Enhanced Header Section */}
-        <div className="text-center mb-20">
-          <div className="inline-block mb-6">
-            <span className="text-sky-400 text-sm font-medium tracking-wider uppercase mb-2 block">
-              Portfolio
-            </span>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-sky-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent leading-tight">
-              My Work
-            </h2>
-          </div>
-          <div className="w-24 h-1 bg-gradient-to-r from-sky-500 to-emerald-500 mx-auto mb-8 rounded-full"></div>
-          <p className="text-gray-400 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
-            A curated collection of projects showcasing my expertise in building 
-            <span className="text-sky-400 font-medium"> high-performing</span>, 
-            <span className="text-emerald-400 font-medium"> user-focused</span> digital experiences.
-          </p>
-        </div>
-
-        {/* Enhanced Grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, idx) => (
             <div
@@ -188,7 +168,6 @@ const ProjectsSection = () => {
             </div>
           ))}
         </div>
-      </div>
     </section>
   );
 };

@@ -1,0 +1,44 @@
+[
+  {
+    "role": "SDE 1",
+    "company": "Marmeto",
+    "period": "Oct 2024 - Present",
+    "type": "Full-time",
+    "description": "Building scalable ecommerce solutions using HTML, CSS, JavaScript, React, Remix, Shopify Liquid, and Tailwind CSS"
+  },
+  {
+    "role": "Frontend Trainee",
+    "company": "Marmeto",
+    "period": "Aug 2024 - Oct 2024",
+    "type": "Internship",
+    "description": "Completed 2-month traineeship, gaining hands-on experience with Shopify tech stack and ecommerce solutions"
+  },
+  {
+    "role": "Graphic Design Intern",
+    "company": "NeXenova Infotech",
+    "period": "Mar 2024 - May 2024",
+    "type": "Internship",
+    "description": "Worked remotely as a Graphic Design Intern, creating visual content and graphics for various projects."
+  },
+  {
+    "role": "Open Source Developer",
+    "company": "Social Winter of Code",
+    "period": "Jan 2024 - Feb 2024",
+    "type": "Part-time",
+    "description": "Contributed to Minglr & Virtuo Learn in Social Winter of Code, enhancing networking and educational experiences through innovative software development."
+  },
+  {
+    "role": "Intern",
+    "company": "NeXenova Infotech",
+    "period": "Jul 2023 - Aug 2023",
+    "type": "Internship",
+    "description": "Interned at Nexenova Infotech, contributing to web projects using HTML, CSS, JavaScript, Node.js, Tailwind CSS, and Material CSS. Gained hands-on experience and improved technical and collaboration skills."
+  },
+  {
+    "role": "Web Intern",
+    "company": "Code Clause",
+    "period": "Dec 2023 - Jan 2024",
+    "type": "Internship",
+    "description": "Worked remotely as a web development intern, contributing to various web projects and enhancing my skills in modern web technologies."
+  }
+]

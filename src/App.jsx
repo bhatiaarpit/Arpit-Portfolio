@@ -4,13 +4,14 @@ import Navbar from './components/navbarSection';
 import Footer from './components/footer';
 import Home from './pages/home';
 import About from './pages/about';
-import Projects from './pages/projects';
+// import Projects from './pages/projects';
 import CustomCursor from "./components/customCursor";
 import Insights from './pages/insights';
 import './App.css';
 import './index.css';
 import ExploreMore from './pages/more';
 import ContactPopup from "./components/contactForm";
+import MyWork from './pages/my-work';
 
 function App() {
   const [contactOpen, setContactOpen] = useState(false);
@@ -29,9 +30,11 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
-              <Route path="/projects" element={<Projects />} />
+              {/* <Route path="/projects" element={<Projects />} /> */}
               <Route path="/insights" element={<Insights />} />
               <Route path="/more" element={<ExploreMore />} />
+              <Route path="/my-work" element={<MyWork />} />
+
             </Routes>
           </div>
           <CustomCursor/>

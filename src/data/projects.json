@@ -1,0 +1,66 @@
+[
+    {
+      "id": 1,
+      "name": "MoovieMate",
+      "description": "A web application for movie enthusiasts to explore and review films.",
+      "image": "/images/mooviemate.png",
+      "github": "https://github.com/arpitbhatia/mooviemate"
+    },
+    {
+      "id": 2,
+      "name": "Lallan - Lucknow Based Chatbot",
+      "description": "A chatbot designed to assist users with information specific to Lucknow.",
+      "image": "/images/lallan.png",
+      "github": "https://github.com/arpitbhatia/lallan-chatbot"
+    },
+    {
+      "id": 3,
+      "name": "On The Go",
+      "description": "A platform facilitating quick and easy travel bookings.",
+      "image": "/images/onthego.png",
+      "github": "https://github.com/arpitbhatia/onthego"
+    },
+    {
+      "id": 4,
+      "name": "Face - Signup/Login",
+      "description": "A user authentication system with signup and login functionalities.",
+      "image": "/images/face.png",
+      "github": "https://github.com/arpitbhatia/face-auth"
+    },
+    {
+      "id": 5,
+      "name": "Ray-Ban Website",
+      "description": "A replica of the Ray-Ban website showcasing products and features.",
+      "image": "/images/rayban.png",
+      "github": "https://github.com/arpitbhatia/rayban-clone"
+    },
+    {
+      "id": 6,
+      "name": "NewspaperNow",
+      "description": "An online platform delivering the latest news articles.",
+      "image": "/images/newspapernow.png",
+      "github": "https://github.com/arpitbhatia/newspapernow"
+    },
+    {
+      "id": 7,
+      "name": "Web Chatty",
+      "description": "A real-time web chat application for seamless communication.",
+      "image": "/images/webchatty.png",
+      "github": "https://github.com/arpitbhatia/webchatty"
+    },
+    {
+      "id": 8,
+      "name": "Terminal Saga",
+      "description": "An interactive terminal-based game.",
+      "image": "/images/terminalsaga.png",
+      "github": "https://github.com/arpitbhatia/terminalsaga"
+    },
+    {
+      "id": 9,
+      "name": "Vanify - Online Music Player",
+      "description": "A web-based music player offering a vast collection of songs.",
+      "image": "/images/vanify.png",
+      "github": "https://github.com/arpitbhatia/vanify"
+    }
+  ]
+  

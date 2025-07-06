@@ -13,9 +13,9 @@ const Navbar = () => {
   const pathToLabel = {
     "/": "Home",
     "/about": "About Me",
-    "/projects": "Projects",
     // "/insights": "Insights",
     // "/more": "Explore More",
+    "/my-work": "My Work",
   };
 
   // Sync activeLink with current URL on mount and when location changes
@@ -87,7 +87,8 @@ useEffect(() => {
   const navigationLinks = [
     { to: "/", label: "Home" },
     { to: "/about", label: "About Me" },
-    { to: "/projects", label: "Projects" },
+    { to: "/my-work", label: "My Work" },
+    // { to: "/projects", label: "Projects" },
     // { to: "/insights", label: "Insights" },
     // { to: "/more", label: "Explore More" },
   ];
