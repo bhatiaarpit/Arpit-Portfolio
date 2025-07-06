@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // <-- Add this import
+nimport { useNavigate } from "react-router-dom"; // <-- Add this import
 import ContactPopup from "./contactForm";
 
 const HeroSection = () => {

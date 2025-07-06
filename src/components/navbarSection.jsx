@@ -125,7 +125,7 @@ useEffect(() => {
             </div>
           </a>
 
-          <div className="hidden md:flex items-center justify-center flex-1">
+          <div className="hidden mr-[4rem] md:flex items-center justify-center flex-1">
             <div className="flex items-center space-x-1 bg-gray-900/50 backdrop-blur-xl rounded-full px-4 py-1.5 border border-gray-700/60 shadow-2xl hover:bg-gray-900/60 transition-all duration-300">
               {navigationLinks.map((link) => (
                 <button
