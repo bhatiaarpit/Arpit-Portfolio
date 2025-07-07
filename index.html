@@ -1,25 +1,42 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/ab2.png" type="image/x-icon"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arpit Bhatia</title>
-    <script>
-      (function() {
-        const theme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  
-        if (theme === 'dark' || (!theme && prefersDark)) {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
-      })();
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ✅ Updated Title -->
+  <title>Arpit Bhatia | Full Stack Developer & Web Designer</title>
+
+  <!-- ✅ Meta Description for Google -->
+  <meta name="description" content="Portfolio of Arpit Bhatia – Full Stack Developer and Web Designer. Check out my projects, skills, and contact info." />
+
+  <!-- ✅ Favicon -->
+  <link rel="icon" href="/ab2.png" type="image/x-icon" />
+
+  <!-- ✅ Open Graph Tags (for Google, LinkedIn, etc.) -->
+  <meta property="og:title" content="Arpit Bhatia | Full Stack Developer & Web Designer" />
+  <meta property="og:description" content="Explore my portfolio website, featuring projects, design work, and technical skills." />
+  <meta property="og:image" content="https://arpitbhatia.com/og-image.png" />
+  <meta property="og:url" content="https://arpitbhatia.com" />
+  <meta property="og:type" content="website" />
+
+  <!-- ✅ Twitter Card (optional) -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Arpit Bhatia | Full Stack Developer & Web Designer" />
+  <meta name="twitter:description" content="Explore Arpit Bhatia's portfolio – projects, tech stack, and more." />
+  <meta name="twitter:image" content="https://arpitbhatia.com/og-image.png" />
+
+  <!-- Optional: Control indexing -->
+  <meta name="robots" content="index, follow" />
+
+  <!-- ✅ Theme Handling Script -->
+  <script>
+    (function () {
+      const theme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (theme === 'dark' || (!theme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+</head>

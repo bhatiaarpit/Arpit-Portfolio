@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // <-- Add this import
+import { useNavigate } from "react-router-dom"; 
 import ContactPopup from "./contactForm";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentWord, setCurrentWord] = useState(0);
   const [isContactOpen, setIsContactOpen] = useState(false);
-  const navigate = useNavigate(); // <-- Add this line
+  const navigate = useNavigate(); 
 
   const words = ["Fast", "Functional", "Future-Ready"];
 
