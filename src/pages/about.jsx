@@ -37,7 +37,7 @@ const AboutMeSection = () => {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 mb-16 lg:mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 lg:mb-20">
           
           {/* Profile Section */}
           <div className={`lg:col-span-2 transition-all duration-1000 transform delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
@@ -116,7 +116,7 @@ const AboutMeSection = () => {
           <div className={`transition-all duration-1000 transform delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             
             {/* Work Tech */}
-            <div className="mb-6 lg:mb-8">
+            <div className="mb-6 lg:mb-8 md:block hidden">
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-6 h-6 bg-blue-500 rounded flex items-center justify-center">
                   <span className="text-white text-sm">💼</span>
