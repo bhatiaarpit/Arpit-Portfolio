@@ -3,96 +3,108 @@ import { Eye, Github } from "lucide-react";
 const projects = [
   {
     title: "Graphell",
-    description: "Full-stack app for task tracking and team collaboration.",
-    tech: ["Next.js", "Typescript", "Node.js", "Prisma", "PostgreSQL", "AWS"],
+    description:
+      "A robust full-stack task tracking and team collaboration platform featuring real-time updates, secure authentication, and cloud deployment. Built with modern scalable technologies for performance and maintainability.",
+    tech: ["Next.js", "TypeScript", "Node.js", "Prisma ORM", "PostgreSQL", "AWS S3", "JWT", "REST API"],
     image: "/Projects/11.png",
     demo: "https://github.com/bhatiaarpit/GraphellProject",
     code: "https://github.com/bhatiaarpit/GraphellProject",
   },
   {
     title: "GDG Lucknow",
-    description: "Community website built with modern UI, featuring smooth animations and optimized performance.",
-    tech: ["Next.js", "Typescript", "Tailwind CSS", "Framer Motion"],
+    description:
+      "An official community website for Google Developer Group Lucknow, designed with responsive layouts, smooth animations, and optimized for high performance using static generation.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
     image: "/Projects/12.png",
     demo: "https://gdg.lucknow.dev/",
     code: "https://github.com/bhatiaarpit/gdg_lucknow",
   },
   {
-    title: "Twitter UI clone",
-    description: "A frontend-only Twitter clone with image posting and tag-based filtering, featuring a clean and modern UI.",
-    tech: ["React", "Tailwind CSS"],
+    title: "Twitter UI Clone",
+    description:
+      "A clean, responsive frontend clone of Twitter with dynamic image uploads and hashtag-based filtering, offering an intuitive user interface using modern React tools.",
+    tech: ["React.js", "Tailwind CSS", "React Hooks"],
     image: "/Projects/10.png",
     demo: "https://cloned-twitter.vercel.app/",
     code: "https://github.com/bhatiaarpit/Twitter-Clone",
   },
   {
     title: "MoovieMate",
-    description: "A movie search and details app powered by a modern UI and external APIs.",
-    tech: ["React", "TMDB API", "Tailwind CSS"],
+    description:
+      "A movie discovery and browsing app powered by The Movie Database (TMDB) API, allowing users to search, view ratings, and get detailed information with a polished UI.",
+    tech: ["React.js", "TMDB API", "Tailwind CSS", "Axios"],
     image: "/Projects/1.png",
     demo: "https://mooviemate.vercel.app/",
     code: "https://github.com/bhatiaarpit/MoovieMate",
   },
   {
     title: "Lallan - Lucknow Based Chatbot",
-    description: "A chatbot tailored for Lucknow, built using advanced LLMs.",
-    tech: ["React", "Vite", "Tailwind CSS"],
+    description:
+      "A localized chatbot tailored for Lucknow users, integrating advanced language models with a user-friendly interface. Designed for easy deployment and fast interactions.",
+    tech: ["React.js", "Vite", "Tailwind CSS", "LLMs", "OpenAI API"],
     image: "/Projects/5.png",
     demo: "https://lallanrag.vercel.app/",
     code: "https://github.com/bhatiaarpit/",
   },
   {
     title: "On The Go",
-    description: "A travel planning website that simplifies itineraries and bookings.",
-    tech: ["React", "Tailwind CSS"],
+    description:
+      "A travel planning platform that helps users create and manage itineraries, discover destinations, and explore travel options — all in one place.",
+    tech: ["React.js", "Tailwind CSS", "React Router"],
     image: "/Projects/2.png",
     demo: "https://onthegotravel.netlify.app/",
     code: "https://github.com/bhatiaarpit/Onthego",
   },
   {
     title: "Face - Signup/Login",
-    description: "A minimalistic login/signup interface for authentication workflows.",
-    tech: ["HTML", "CSS", "JavaScript"],
+    description:
+      "A minimalistic authentication UI with responsive design and smooth transitions, built to serve as a template for login and signup flows.",
+    tech: ["HTML5", "CSS3", "Vanilla JavaScript", "Form Validation"],
     image: "/Projects/8.png",
     demo: "#",
     code: "https://github.com/bhatiaarpit/Face-Login-Signup",
   },
   {
     title: "Ray-Ban Website",
-    description: "An eCommerce front-end inspired by Ray-Ban's branding.",
-    tech: ["HTML", "CSS", "JavaScript"],
+    description:
+      "An eCommerce landing page inspired by Ray-Ban's branding, featuring interactive product displays and elegant UI components.",
+    tech: ["HTML5", "CSS3", "JavaScript (DOM Manipulation)", "Responsive Design"],
     image: "/Projects/4.png",
     demo: "https://bhatiaarpit.github.io/Ray-ban-project/",
     code: "https://github.com/bhatiaarpit/Ray-ban-project",
   },
   {
     title: "NewspaperNow",
-    description: "A simple newspaper-style blog layout built with responsive design.",
-    tech: ["HTML", "CSS", "JavaScript"],
+    description:
+      "A retro-themed blog layout designed to mimic a newspaper, with clear typographic hierarchy and mobile responsiveness.",
+    tech: ["HTML5", "CSS3", "JavaScript", "Flexbox/Grid"],
     image: "/Projects/6.png",
     demo: "https://bhatiaarpit.github.io/NewspaperNOW/",
     code: "https://github.com/bhatiaarpit/NewspaperNOW",
   },
   {
     title: "Web Chatty",
-    description: "A real-time web-based chat application.",
-    tech: ["HTML", "CSS", "JavaScript"],
+    description:
+      "A browser-based real-time chat app enabling multiple users to interact via WebSockets. Emphasizes UI simplicity and user interaction.",
+    tech: ["HTML5", "CSS3", "JavaScript", "WebSockets (planned)"],
     image: "/Projects/7.png",
     demo: "#",
     code: "https://github.com/bhatiaarpit/WebChatty",
   },
   {
     title: "Terminal Saga",
-    description: "An e-learning terminal interface styled for developers.",
-    tech: ["HTML", "CSS", "JavaScript"],
+    description:
+      "A developer-focused e-learning platform styled like a terminal interface, enhancing the coding experience for students and self-learners.",
+    tech: ["HTML5", "CSS3", "JavaScript", "Custom Terminal UI"],
     image: "/Projects/9.png",
     demo: "https://bhatiaarpit.github.io/TerminalSAGA-E-Learning-Website/",
     code: "https://github.com/bhatiaarpit/TerminalSAGA-E-Learning-Website",
   },
   {
     title: "Vanify - Online Music Player",
-    description: "A front-end music player web app for streaming audio content.",
-    tech: ["HTML", "CSS", "JavaScript"],
+    description:
+      "An elegant front-end music player web application with playlist and audio controls, optimized for seamless music streaming UX.",
+    tech: ["HTML5", "CSS3", "JavaScript", "Audio API"],
     image: "/Projects/3.png",
     demo: "https://bhatiaarpit.github.io/Vanify_Online_Music_player/",
     code: "https://github.com/bhatiaarpit/Vanify_Online_Music_player",
