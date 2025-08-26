@@ -4,7 +4,7 @@ const projects = [
   {
     title: "Graphell",
     description: "Full-stack app for task tracking and team collaboration.",
-    tech: ["Next.js", "Node.js", "Prisma", "PostgreSQL", "AWS"],
+    tech: ["Next.js", "Typescript", "Node.js", "Prisma", "PostgreSQL", "AWS"],
     image: "/Projects/11.png",
     demo: "https://github.com/bhatiaarpit/GraphellProject",
     code: "https://github.com/bhatiaarpit/GraphellProject",
@@ -12,7 +12,7 @@ const projects = [
   {
     title: "GDG Lucknow",
     description: "Community website built with modern UI, featuring smooth animations and optimized performance.",
-    tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
+    tech: ["Next.js", "Typescript", "Tailwind CSS", "Framer Motion"],
     image: "/Projects/12.png",
     demo: "https://gdg.lucknow.dev/",
     code: "https://github.com/bhatiaarpit/gdg_lucknow",
