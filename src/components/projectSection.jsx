@@ -21,7 +21,7 @@ const projects = [
     title: "Twitter UI clone",
     description: "A frontend-only Twitter clone with image posting and tag-based filtering, featuring a clean and modern UI.",
     tech: ["React", "Tailwind CSS"],
-    image: "/Projects/1.png",
+    image: "/Projects/10.png",
     demo: "https://cloned-twitter.vercel.app/",
     code: "https://github.com/bhatiaarpit/Twitter-Clone",
   },
