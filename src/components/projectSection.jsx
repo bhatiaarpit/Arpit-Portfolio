@@ -2,6 +2,30 @@ import { Eye, Github } from "lucide-react";
 
 const projects = [
   {
+    title: "Graphell",
+    description: "Full-stack app for task tracking and team collaboration.",
+    tech: ["Next.js", "Node.js", "Prisma", "PostgreSQL", "AWS"],
+    image: "/Projects/11.png",
+    demo: "https://github.com/bhatiaarpit/GraphellProject",
+    code: "https://github.com/bhatiaarpit/GraphellProject",
+  },
+  {
+    title: "GDG Lucknow",
+    description: "Community website built with modern UI, featuring smooth animations and optimized performance.",
+    tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
+    image: "/Projects/12.png",
+    demo: "https://gdg.lucknow.dev/",
+    code: "https://github.com/bhatiaarpit/gdg_lucknow",
+  },
+  {
+    title: "Twitter UI clone",
+    description: "A frontend-only Twitter clone with image posting and tag-based filtering, featuring a clean and modern UI.",
+    tech: ["React", "Tailwind CSS"],
+    image: "/Projects/1.png",
+    demo: "https://cloned-twitter.vercel.app/",
+    code: "https://github.com/bhatiaarpit/Twitter-Clone",
+  },
+  {
     title: "MoovieMate",
     description: "A movie search and details app powered by a modern UI and external APIs.",
     tech: ["React", "TMDB API", "Tailwind CSS"],
