@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaGlobeAsia, FaLightbulb, FaLaptopCode, FaCode } from "react-icons/fa";
+import TechGlobe from "./techGlobe";
 
 const AboutMeSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -75,12 +76,6 @@ const AboutMeSection = () => {
     }
   ];
 
-  const tabs = [
-    { name: "about-me.js", icon: "📄" },
-    { name: "terminal", icon: "💻" },
-    { name: "passion.tsx", icon: "⚛️" }
-  ];
-
   // Typing animation effect
   useEffect(() => {
     if (!isVisible) return;
@@ -118,17 +113,17 @@ const AboutMeSection = () => {
   return (
     <section
       id="about-section"
-      className="min-h-screen bg-gradient-to-bl from-[#0b0f1a] via-[#0a0e19] to-black  relative overflow-hidden py-10"
+      className="min-h-screen bg-[#020305] relative overflow-hidden py-10"
     >
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-sky-400 rounded-full animate-ping"></div>
-        <div className="absolute top-1/3 right-1/4 w-1 h-1 bg-emerald-400 rounded-full animate-pulse"></div>
+        <div className="absolute top-1/3 right-1/4 w-1 h-1 bg-blue-400 rounded-full animate-pulse"></div>
         <div className="absolute bottom-1/3 left-1/3 w-1.5 h-1.5 bg-cyan-400 rounded-full animate-ping delay-1000"></div>
         <div className="absolute top-1/2 right-1/3 w-1 h-1 bg-sky-400 rounded-full animate-pulse delay-2000"></div>
-        <div className="absolute bottom-1/4 right-1/5 w-2 h-2 bg-emerald-400 rounded-full animate-ping delay-700"></div>
-        <div className="absolute top-20 left-20 w-40 h-40 bg-gradient-to-r from-sky-500/10 to-emerald-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-32 right-20 w-56 h-56 bg-gradient-to-r from-emerald-500/8 to-cyan-500/8 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-10 w-32 h-32 bg-gradient-to-r from-cyan-500/12 to-sky-500/12 rounded-full blur-2xl animate-pulse delay-2000"></div>
+        <div className="absolute bottom-1/4 right-1/5 w-2 h-2 bg-blue-400 rounded-full animate-ping delay-700"></div>
+        <div className="absolute top-20 left-20 w-40 h-40 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-32 right-20 w-56 h-56 bg-gradient-to-r from-cyan-500/8 to-blue-500/8 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-10 w-32 h-32 bg-gradient-to-r from-sky-500/12 to-blue-500/12 rounded-full blur-2xl animate-pulse delay-2000"></div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10 flex flex-col justify-center min-h-screen">
@@ -138,8 +133,8 @@ const AboutMeSection = () => {
           <div className={`transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             <div className="mb-8">
               <div className="mb-4 flex items-center gap-3">
-                <span className="block w-8 h-1 bg-gradient-to-r from-sky-400 to-emerald-500 rounded"></span>
-                <span className="text-sm sm:text-base text-sky-400 font-medium tracking-wide uppercase">About Me</span>
+                <span className="block w-8 h-1 bg-gradient-to-r from-blue-400 to-cyan-500 rounded"></span>
+                <span className="text-sm sm:text-base text-cyan-400 font-medium tracking-wide uppercase">About Me</span>
               </div>
               
               <div className="mb-4">
@@ -148,7 +143,7 @@ const AboutMeSection = () => {
                   <span className="inline-block animate-bounce">👋</span>
                 </span>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight">
-                  I'm <span className="bg-gradient-to-r from-sky-400 via-emerald-400 to-cyan-500 bg-clip-text text-transparent">Arpit Bhatia</span>
+                  I'm <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-sky-500 bg-clip-text text-transparent">Arpit Bhatia</span>
                 </h2>
               </div>
             </div>
@@ -184,98 +179,7 @@ const AboutMeSection = () => {
 
           {/* Right Side - Interactive Code Window */}
           <div className={`transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} delay-300`}>
-            <div className="bg-gray-900/80 backdrop-blur-sm border border-gray-700/50 rounded-xl overflow-hidden shadow-2xl w-full max-w-none">
-              {/* Window Header */}
-              <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 bg-gray-800/60 border-b border-gray-700/50">
-                <div className="flex items-center gap-2">
-                  <div className="flex gap-1.5">
-                    <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full"></div>
-                    <div className="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-500 rounded-full"></div>
-                    <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full"></div>
-                  </div>
-                  <span className="text-gray-400 text-xs sm:text-sm ml-2">VS Code</span>
-                </div>
-                <div className="text-gray-500 text-xs hidden sm:block">arpit-portfolio</div>
-              </div>
-
-              {/* Tabs */}
-              <div className="flex bg-gray-800/40 border-b border-gray-700/30 overflow-x-auto">
-                {tabs.map((tab, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentTab(index)}
-                    className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 text-xs sm:text-sm transition-all duration-200 border-r border-gray-700/30 whitespace-nowrap ${
-                      currentTab === index
-                        ? 'bg-gray-900/60 text-sky-400 border-b border-sky-400'
-                        : 'text-gray-400 hover:text-gray-300 hover:bg-gray-800/40'
-                    }`}
-                  >
-                    <span className="text-xs sm:text-sm">{tab.icon}</span>
-                    <span className="hidden sm:inline">{tab.name}</span>
-                    <span className="sm:hidden">{tab.name.split('.')[0]}</span>
-                  </button>
-                ))}
-              </div>
-
-              {/* Code Content */}
-              <div className="p-2 sm:p-4 h-64 sm:h-80 overflow-auto">
-                <pre className="text-xs sm:text-sm leading-relaxed">
-                  <code className="text-gray-300">
-                    {codeSnippets[currentTab].content.map((line, index) => (
-                      <div key={index} className="flex">
-                        <span className="text-gray-600 mr-2 sm:mr-4 select-none w-4 sm:w-6 text-right flex-shrink-0">
-                          {index + 1}
-                        </span>
-                        <span className={`break-all sm:break-normal ${
-                          codeSnippets[currentTab].lang === 'bash' && line.startsWith('$')
-                            ? 'text-emerald-400'
-                            : codeSnippets[currentTab].lang === 'bash' && !line.startsWith('$')
-                            ? 'text-gray-300'
-                            : line.includes(':')
-                            ? 'text-sky-400'
-                            : line.includes("'") || line.includes('"')
-                            ? 'text-green-400'
-                            : line.includes('//')
-                            ? 'text-gray-500'
-                            : 'text-gray-300'
-                        }`}>
-                          {index <= currentLine ? (
-                            index === currentLine ? (
-                              <>
-                                {typedText.split('\n')[index] || ''}
-                                <span className="animate-pulse bg-sky-400 w-1 sm:w-2 h-4 sm:h-5 inline-block ml-1"></span>
-                              </>
-                            ) : (
-                              typedText.split('\n')[index] || line
-                            )
-                          ) : (
-                            ''
-                          )}
-                        </span>
-                      </div>
-                    ))}
-                  </code>
-                </pre>
-              </div>
-
-              {/* Status Bar */}
-              <div className="flex items-center justify-between px-2 sm:px-4 py-1 sm:py-2 bg-gray-800/60 text-xs text-gray-400 border-t border-gray-700/30">
-                <div className="flex items-center gap-2 sm:gap-4">
-                  <span className="flex items-center gap-1">
-                    <span className="hidden sm:inline">⚡</span>
-                    <span className="text-xs">Ready</span>
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <span className="hidden sm:inline">🌟</span>
-                    <span className="text-xs">{codeSnippets[currentTab].lang}</span>
-                  </span>
-                </div>
-                <div className="flex items-center gap-2 text-xs">
-                  <span className="hidden sm:inline">UTF-8</span>
-                  <span>Ln {currentLine + 1}</span>
-                </div>
-              </div>
-            </div>
+              <TechGlobe/>
           </div>
         </div>
       </div>

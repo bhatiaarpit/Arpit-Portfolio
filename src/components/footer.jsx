@@ -65,16 +65,14 @@ const Footer = ({ onStartProject, onContactClick }) => {
     { label: "Projects", href: "/my-work#projects" },
     { label: "Skills", href: "#skills" },
     { label: "Experience", href: "/my-work#experience" },
-    { label: "Contact", href: "#contact", onClick: onContactClick }, // Add onClick
+    { label: "Contact", href: "#contact", onClick: onContactClick },
   ];
 
   const services = [
     { label: "Web Development", href: "#" },
     { label: "UI/UX Design", href: "#" },
     { label: "API Development", href: "#" },
-    { label: "Consulting", href: "#" },
-    { label: "Code Review", href: "#" },
-    { label: "Mentoring", href: "#" },
+    { label: "Consulting", href: "#" }
   ];
 
   return (
@@ -255,12 +253,6 @@ const Footer = ({ onStartProject, onContactClick }) => {
                 © {currentYear} Arpit Bhatia. Made with{" "}
                 <Heart size={14} className="inline text-red-500 animate-pulse" />{" "}
                 in India
-              </div>
-              
-              <div className="flex items-center space-x-6 text-sm text-gray-400">
-                <a href="#" className="hover:text-white transition-colors duration-200">Privacy Policy</a>
-                <a href="#" className="hover:text-white transition-colors duration-200">Terms of Service</a>
-                <a href="#" className="hover:text-white transition-colors duration-200">Sitemap</a>
               </div>
             </div>
           </div>

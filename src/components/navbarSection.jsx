@@ -1,258 +1,305 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Menu, X } from "lucide-react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+
+const navigationLinks = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About Me" },
+  { to: "/my-work", label: "My Work" },
+];
+
+const menuItems = [
+  { label: "Home", to: "/" },
+  { label: "About Me", to: "/about" },
+  { label: "My Work", to: "/my-work" },
+];
+
+const socialItems = [
+  { label: "GitHub", to: "https://github.com/bhatiaarpit" },
+  { label: "LinkedIn", to: "https://www.linkedin.com/in/bhatiaarpit/" },
+  { label: "Twitter", to: "https://x.com/arpit_bhatia_" },
+  { label: "Instagram", to: "https://instagram.com/focuscrafter" },
+];
+
+const Logo = () => (
+  <div className="relative overflow-hidden rounded-xl p-2">
+    <img
+      src="/ab2.png"
+      alt="Arpit Bhatia Logo"
+      className="h-12 w-auto drop-shadow-lg"
+      onError={(e) => {
+        e.target.style.display = "none";
+        e.target.nextElementSibling.style.display = "block";
+      }}
+    />
+    <div className="hidden text-white text-2xl font-black">
+      <span className="bg-gradient-to-r from-blue-400 to-cyan-500 bg-clip-text text-transparent">
+        AB
+      </span>
+    </div>
+  </div>
+);
+
+// Injected once on first mount — keeps scroll-lock off the render path entirely
+let scrollLockInjected = false;
+function ensureScrollLockStyle() {
+  if (scrollLockInjected) return;
+  const style = document.createElement("style");
+  style.textContent = `
+    html.scroll-locked { overflow: hidden !important; }
+    html.scroll-locked body {
+      position: fixed;
+      top: var(--scroll-lock-top, 0);
+      width: 100%;
+      overflow: hidden;
+    }
+  `;
+  document.head.appendChild(style);
+  scrollLockInjected = true;
+}
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("Home");
   const [scrolled, setScrolled] = useState(false);
+  const [mouseX, setMouseX] = useState(50);
+  const navContainerRef = useRef(null);
+  const scrollYRef = useRef(0);
   const navigate = useNavigate();
-  const location = useLocation();
 
-  // Map pathnames to labels for syncing activeLink with URL
-  const pathToLabel = {
-    "/": "Home",
-    "/about": "About Me",
-    // "/insights": "Insights",
-    // "/more": "Explore More",
-    "/my-work": "My Work",
-  };
+  // Inject scroll-lock CSS once, outside of any effect timing
+  ensureScrollLockStyle();
 
-  // Sync activeLink with current URL on mount and when location changes
+  const handleLinkClick = useCallback(
+    (label, to) => {
+      setActiveLink(label);
+      setIsOpen(false);
+      if (to) navigate(to);
+    },
+    [navigate]
+  );
+
+  // --- Scroll detection (passive, no layout reads in handler) ---
   useEffect(() => {
-    const label = pathToLabel[location.pathname];
-    if (label) setActiveLink(label);
-  }, [location.pathname]);
-
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const closeMenu = () => setIsOpen(false);
-
-  const handleLinkClick = (label, to) => {
-    setActiveLink(label);
-    closeMenu();
-
-    if (to && to.startsWith("#")) {
-      // If already on home, just scroll
-      if (location.pathname === "/") {
-        const el = document.querySelector(to);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
-        }
-      } else {
-        // Navigate to home, then scroll after navigation
-        navigate("/", { state: { scrollTo: to } });
-      }
-    } else if (to && to.startsWith("/")) {
-      navigate(to);
-    }
-  };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 20;
-      setScrolled(isScrolled);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-useEffect(() => {
-  if (isOpen) {
-    // Store current scroll position
-    const scrollY = window.scrollY;
-    
-    // Apply styles to prevent scrolling
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = '100%';
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
-  } else {
-    // Restore everything and scroll position
-    const scrollY = document.body.style.top;
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.width = '';
-    document.body.style.overflow = '';
-    document.documentElement.style.overflow = '';
-    
-    if (scrollY) {
-      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+  // --- Scroll lock toggle ---
+  useEffect(() => {
+    const el = document.documentElement;
+    if (isOpen) {
+      scrollYRef.current = window.scrollY;
+      el.style.setProperty("--scroll-lock-top", `-${scrollYRef.current}px`);
+      el.classList.add("scroll-locked");
+    } else {
+      el.classList.remove("scroll-locked");
+      el.style.removeProperty("--scroll-lock-top");
+      window.scrollTo(0, scrollYRef.current);
     }
-  }
-}, [isOpen]);
+    return () => {
+      el.classList.remove("scroll-locked");
+      el.style.removeProperty("--scroll-lock-top");
+    };
+  }, [isOpen]);
 
-  // Define navigation links array to avoid duplication
-  const navigationLinks = [
-    { to: "/", label: "Home" },
-    { to: "/about", label: "About Me" },
-    { to: "/my-work", label: "My Work" },
-    // { to: "/projects", label: "Projects" },
-    // { to: "/insights", label: "Insights" },
-    // { to: "/more", label: "Explore More" },
-  ];
+  // --- Mouse-tracking underline (desktop only) ---
+  useEffect(() => {
+    // Skip on anything that looks like a touch device
+    if (window.matchMedia("(hover: none)").matches) return;
+
+    const onMove = (e) => {
+      const el = navContainerRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const pct = ((e.clientX - rect.left) / rect.width) * 100;
+      setMouseX(Math.max(25, Math.min(75, pct)));
+    };
+
+    window.addEventListener("mousemove", onMove);
+    return () => window.removeEventListener("mousemove", onMove);
+  }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-        ? 'bg-black/90 backdrop-blur-xl border-b border-gray-800/60 shadow-2xl'
-        : ''
-      }`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500  ${
+        scrolled
+          ? "bg-black/90 backdrop-blur-xl border-b border-gray-800/60 shadow-2xl"
+          : ""
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
+          {/* Logo */}
           <a
             href="https://arpitbhatia.com"
             target="_blank"
             rel="noopener noreferrer"
             className="flex-shrink-0 cursor-pointer"
           >
-            <div className="relative overflow-hidden rounded-xl p-2 transition-all duration-300">
-              <img
-                src="/ab2.png"
-                alt="Arpit Bhatia Logo"
-                className="h-12 w-auto transition-all duration-300 drop-shadow-lg"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.nextElementSibling.style.display = 'block';
-                }}
-              />
-              <div className="hidden text-white text-2xl font-black relative">
-                <span className="relative z-10 bg-gradient-to-r from-blue-400 to-cyan-500 bg-clip-text text-transparent">
-                  AB
-                </span>
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
-            </div>
+            <Logo />
           </a>
 
-          <div className="hidden mr-[4rem] md:flex items-center justify-center flex-1">
-            <div className="flex items-center space-x-1 bg-gray-900/50 backdrop-blur-xl rounded-full px-4 py-1.5 border border-gray-700/60 shadow-2xl hover:bg-gray-900/60 transition-all duration-300">
+          {/* Desktop nav pills */}
+          <div className="hidden md:flex items-center justify-center flex-1">
+            <div
+              ref={navContainerRef}
+              className="relative flex items-center space-x-2 bg-black/40 backdrop-blur-2xl rounded-full px-2 py-2 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
+            >
               {navigationLinks.map((link) => (
                 <button
                   key={link.label}
                   onClick={() => handleLinkClick(link.label, link.to)}
-                  className={`relative px-3 py-2 rounded-full text-sm font-medium transition-all duration-300 group ${activeLink === link.label
-                      ? "bg-gradient-to-r from-blue-500 to-sky-600 text-white shadow-lg scale-105"
-                      : "text-gray-300 hover:text-white hover:bg-gray-700/60"
-                    }`}
+                  className={`relative px-6 py-3 rounded-full text-sm font-medium transition-colors duration-300 ${
+                    activeLink === link.label
+                      ? "text-white"
+                      : "text-gray-400 hover:text-gray-200"
+                  }`}
                 >
-                  <span className="relative z-10">{link.label}</span>
                   {activeLink === link.label && (
                     <>
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-sky-600 rounded-full opacity-20 animate-pulse"></div>
-                      <div className="absolute inset-0 bg-white/10 rounded-full"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-500 rounded-full" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-400/50 to-blue-600/50 rounded-full blur-md" />
                     </>
                   )}
-                  {activeLink !== link.label && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  )}
+                  <span className="relative z-10">{link.label}</span>
                 </button>
               ))}
+
+              {/* Mouse-follow underline */}
+              <div
+                className="absolute -bottom-0.5 h-[2px] w-1/3 bg-gradient-to-r from-transparent via-blue-300 to-transparent pointer-events-none"
+                style={{
+                  left: `${mouseX}%`,
+                  transform: "translateX(-50%)",
+                  transition: "left 300ms ease-out",
+                }}
+              />
             </div>
           </div>
 
-          {/* <div className="hidden md:flex items-center">
-            <button
-              onClick={() => handleLinkClick("Book a Call")}
-              className="group relative px-6 py-3 bg-gradient-to-r from-sky-500 to-cyan-600 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/25 shadow-lg"
-            >
-              <span className="relative z-10 text-sm flex items-center gap-2">
-                Book a Call
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-sky-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-            </button>
-          </div> */}
-
+          {/* Hamburger */}
           <div className="md:hidden">
             <button
-              onClick={toggleMenu}
-              className="relative p-3 text-gray-300 hover:text-white focus:outline-none transition-all duration-200 rounded-xl hover:bg-gray-800/60 backdrop-blur-sm"
-              aria-label="Toggle menu"
+              onClick={() => setIsOpen(true)}
+              className="p-3 text-gray-300 hover:text-white focus:outline-none rounded-xl hover:bg-gray-800/60 transition-colors duration-200"
+              aria-label="Open menu"
             >
-              <div className="relative z-10 transition-transform duration-300">
-                {isOpen ? (
-                  <X size={24} className="rotate-90 transition-transform duration-300" />
-                ) : (
-                  <Menu size={24} className="group-hover:scale-110 transition-transform duration-300" />
-                )}
-              </div>
+              <Menu size={24} />
             </button>
           </div>
         </div>
       </div>
 
-      <div
-        className={`md:hidden fixed inset-0 z-[999] transition-all duration-500 ease-in-out ${isOpen ? "visible opacity-100" : "invisible opacity-0"
-          }`}
-      >
-        <div
-          className={`absolute inset-0 bg-black backdrop-blur-xl transition-opacity duration-500 ${isOpen ? "opacity-100" : "opacity-0"
-            }`}
-          onClick={closeMenu}
-        ></div>
-
-        <div className={`bg-[#000] relative z-50 min-h-screen flex flex-col justify-center items-center transform transition-all duration-500 ${isOpen ? "translate-y-0 scale-100" : "translate-y-10 scale-95"
-          }`}>
-          <button
-            className="absolute top-8 right-8 p-3 text-gray-300 hover:text-white focus:outline-none bg-gray-800/60 rounded-full hover:bg-gray-700/60 transition-all duration-200 backdrop-blur-sm"
-            onClick={toggleMenu}
-            aria-label="Close menu"
-          >
-            <X size={24} />
-          </button>
-
-          <div className="absolute top-8 left-8">
-            <img
-              src="/ab2.png"
-              alt="Arpit Bhatia Logo"
-              className="h-12 w-auto filter drop-shadow-lg"
-              onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.nextElementSibling.style.display = 'block';
-              }}
+      {/* ============================================================
+          MOBILE DRAWER
+          Structure:  backdrop (plain black, no blur)
+                      outer shell (overflow-hidden lives HERE, not on animated child)
+                        drawer (translateY only — nothing that breaks compositing)
+                          inner scroll container (plain div, overflow-y-auto is safe here)
+                            content fades in after drawer settles
+          ============================================================ */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Backdrop — solid black, NO backdrop-blur (kills perf on mobile) */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 bg-black/75 z-[998]"
+              onClick={() => setIsOpen(false)}
             />
-            <div className="hidden text-white text-2xl font-black">
-              <span className="bg-gradient-to-r from-blue-400 to-sky-500 bg-clip-text text-transparent">
-                AB
-              </span>
-            </div>
-          </div>
-
-          <nav className="flex flex-col items-center space-y-8">
-            {navigationLinks.map((link, index) => (
-              <button
-                key={link.label}
-                onClick={() => handleLinkClick(link.label, link.to)}
-                className={`relative text-3xl font-bold transition-all duration-500 transform hover:scale-110 ${activeLink === link.label
-                    ? "bg-gradient-to-r from-blue-400 to-sky-500 bg-clip-text"
-                    : "text-gray-300 hover:text-white"
-                  }`}
-                style={{ animationDelay: `${index * 100}ms` }}
+            <div className="fixed inset-0 z-[999] pointer-events-none overflow-hidden">
+              <motion.div
+                initial={{ translateY: "-100%" }}
+                animate={{ translateY: "0%" }}
+                exit={{ translateY: "-100%" }}
+                transition={{ type: "tween", duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                className="
+                  h-full w-full sm:w-96 ml-auto
+                  bg-gradient-to-b from-[#071729] via-[#0d1520] to-[#000]
+                  shadow-2xl
+                  will-change-transform
+                  pointer-events-auto
+                "
               >
-                <span className="relative z-10">{link.label}</span>
-                {activeLink === link.label && (
-                  <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-xl blur-sm animate-pulse"></div>
-                )}
-              </button>
-            ))}
+                <div className="relative h-full flex flex-col overflow-y-auto">
+                  {/* Header */}
+                  <div className="flex items-center justify-between p-4 border-b border-cyan-500/10 flex-shrink-0">
+                    <Logo />
+                    <button
+                      className="p-2 text-gray-400 hover:text-cyan-400 focus:outline-none transition-colors duration-200"
+                      onClick={() => setIsOpen(false)}
+                      aria-label="Close menu"
+                    >
+                      <X size={24} />
+                    </button>
+                  </div>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ delay: 0.15, duration: 0.3 }}
+                    className="flex-1 px-6 py-8"
+                    style={{ fontFamily: '"Clash Display", sans-serif' }}
+                  >
+                    {/* Main links */}
+                    <nav className="space-y-1">
+                      {menuItems.map((item) => (
+                        <button
+                          key={item.label}
+                          onClick={() => handleLinkClick(item.label, item.to)}
+                          className={`block w-full text-left py-2 text-3xl font-bold transition-colors duration-200 active:scale-95 ${
+                            activeLink === item.label
+                              ? "text-cyan-400"
+                              : "text-gray-300 hover:text-white"
+                          }`}
+                          style={{ WebkitTapHighlightColor: "transparent" }}
+                        >
+                          {item.label}
+                        </button>
+                      ))}
+                    </nav>
 
-            {/* <button
-              onClick={() => handleLinkClick("Book a Call")}
-              className="mt-12 px-10 py-4 bg-gradient-to-r from-sky-500 to-cyan-600 text-white text-xl font-semibold rounded-full hover:scale-105 transition-all duration-300 shadow-2xl flex items-center gap-3"
-            >
-              Book a Call
-              <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-            </button> */}
-          </nav>
+                    {/* Divider */}
+                    <div className="h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent my-8" />
 
-          <div className="absolute top-1/4 left-10 w-32 h-32 bg-blue-500/20 rounded-full filter blur-xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-10 w-40 h-40 bg-sky-500/20 rounded-full filter blur-xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/4 w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
-          <div className="absolute bottom-1/3 right-1/3 w-1.5 h-1.5 bg-cyan-400 rounded-full animate-ping delay-700"></div>
-        </div>
-      </div>
+                    {/* Social links */}
+                    <nav className="space-y-1">
+                      {socialItems.map((item) => (
+                        <a
+                          key={item.label}
+                          href={item.to}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block text-xl font-medium text-gray-400 hover:text-cyan-400 transition-colors duration-200 py-1 active:scale-95"
+                          style={{ WebkitTapHighlightColor: "transparent" }}
+                        >
+                          {item.label}
+                        </a>
+                      ))}
+                    </nav>
+                  </motion.div>
+                  <div
+                    className="absolute bottom-20 right-10 w-40 h-40 rounded-full pointer-events-none"
+                    style={{ background: "radial-gradient(circle, rgba(6,182,212,0.18) 0%, transparent 70%)" }}
+                  />
+                  <div
+                    className="absolute top-1/3 left-10 w-32 h-32 rounded-full pointer-events-none"
+                    style={{ background: "radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%)" }}
+                  />
+                  <div className="absolute top-1/4 right-20 w-1 h-1 bg-cyan-400 rounded-full pointer-events-none opacity-60" />
+                  <div className="absolute bottom-1/3 left-1/4 w-1 h-1 bg-blue-400 rounded-full pointer-events-none opacity-50" />
+                </div>
+              </motion.div>
+            </div>
+          </>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

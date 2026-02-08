@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import ProjectSection from "../components/projectSection.jsx";
+import { Briefcase, CheckCircle2, Settings } from "lucide-react";
 
 const MyWorkSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -78,20 +79,12 @@ const MyWorkSection = () => {
     { 
       id: "experience", 
       label: "Experience",
-      icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6z" />
-        </svg>
-      )
+      icon: <Briefcase className="w-5 h-5" />
     },
     { 
       id: "projects", 
       label: "Projects",
-      icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-        </svg>
-      )
+      icon: <Settings className="w-5 h-5" />
     }
   ];
 
@@ -131,7 +124,7 @@ const MyWorkSection = () => {
         
         {/* Header */}
         <div className={`md:mx-8 mb-8 text-center transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white my-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white my-6 font-clash-display">
             My Work<span className="text-blue-500">.</span>
           </h1>
           <div className="w-16 sm:w-20 lg:w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full"></div>
@@ -213,9 +206,7 @@ const MyWorkSection = () => {
                         <div className="space-y-6">
                           <div>
                             <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
-                              <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                              </svg>
+                              <Briefcase className="w-5 h-5 text-blue-400" />
                               Key Projects
                             </h4>
                             <ul className="space-y-2">
@@ -230,9 +221,7 @@ const MyWorkSection = () => {
 
                           <div>
                             <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
-                              <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                              </svg>
+                              <CheckCircle2 className="w-5 h-5 text-emerald-400" />
                               Achievements
                             </h4>
                             <ul className="space-y-2">
@@ -249,10 +238,7 @@ const MyWorkSection = () => {
                         {/* Technologies */}
                         <div>
                           <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
-                            <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
+                            <Settings className="w-5 h-5 text-purple-400" />
                             Technologies Used
                           </h4>
                           <div className="flex flex-wrap gap-2">
@@ -277,32 +263,6 @@ const MyWorkSection = () => {
           {activeTab === "projects" && (
             <ProjectSection isVisible={isVisible} />
           )}
-        </div>
-
-        {/* Call to Action */}
-        <div className={`mt-16 text-center transition-all duration-1000 transform delay-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <div className="rounded-2xl p-8">
-            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-              Ready to work together?
-            </h3>
-            <p className="text-gray-300 text-lg mb-6 max-w-2xl mx-auto">
-              I'm always excited to take on new challenges and collaborate on innovative projects. Let's create something amazing!
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="#contact"
-                className="px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg shadow-blue-500/25"
-              >
-                Get In Touch
-              </a>
-              <a
-                href="#projects"
-                className="px-8 py-3 bg-gray-800/50 hover:bg-gray-700/50 text-white font-semibold rounded-lg border border-gray-700/30 hover:border-gray-600/50 transition-all duration-300"
-              >
-                View Projects
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </section>

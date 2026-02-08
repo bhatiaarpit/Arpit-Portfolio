@@ -5,7 +5,7 @@ import Footer from "./components/footer";
 import Home from './pages/home';
 import About from './pages/about';
 // import Projects from './pages/projects';
-import CustomCursor from "./components/customCursor";
+// import CustomCursor from "./components/customCursor";
 import Insights from './pages/insights';
 import './App.css';
 import './index.css';
@@ -37,7 +37,7 @@ function App() {
 
             </Routes>
           </div>
-          <CustomCursor/>
+          {/* <CustomCursor/> */}
           <Footer onContactClick={() => setContactOpen(true)} />
           <ContactPopup isOpen={contactOpen} onClose={() => setContactOpen(false)} />
         </div>
