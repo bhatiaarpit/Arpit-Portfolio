@@ -134,9 +134,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <a
-            href="https://arpitbhatia.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/"
             className="flex-shrink-0 cursor-pointer"
           >
             <Logo />
