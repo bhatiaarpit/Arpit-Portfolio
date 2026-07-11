@@ -1,49 +1,141 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Character Encoding -->
     <meta charset="UTF-8" />
+
+    <!-- Viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Title -->
-    <title>Arpit Bhatia | Full Stack Developer & Web Designer</title>
+    <!-- Primary SEO -->
+    <title>
+      Arpit Bhatia | Software Engineer | React, Shopify, AI & Full Stack Developer
+    </title>
 
-    <!-- Meta Description for SEO -->
-    <meta name="description" content="Portfolio of Arpit Bhatia – Full Stack Developer and Web Designer. Check out my projects, skills, and contact info." />
+    <meta
+      name="description"
+      content="Arpit Bhatia is a Software Engineer specializing in React, Shopify, TypeScript, AI, and Full Stack Development. Explore my projects, open source contributions, technical blogs, and community work."
+    />
 
-    <!-- Favicon -->
-    <link rel="icon" href="/ab.png" type="image/x-icon" />
+    <meta
+      name="keywords"
+      content="Arpit Bhatia, Software Engineer, React Developer, Shopify Developer, Full Stack Developer, TypeScript, JavaScript, Next.js, AI Engineer, Open Source, SherifLabs, CodeSherif"
+    />
 
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="Arpit Bhatia | Full Stack Developer & Web Designer" />
-    <meta property="og:description" content="Explore my portfolio website, featuring projects, design work, and technical skills." />
-    <meta property="og:image" content="https://arpitbhatia.com/og-image.png" />
-    <meta property="og:url" content="https://arpitbhatia.com" />
+    <meta name="author" content="Arpit Bhatia" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://arpitbhatia.com/" />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/ab.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Arpit Bhatia" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://arpitbhatia.com/" />
 
-    <!-- Twitter Card -->
+    <meta
+      property="og:title"
+      content="Arpit Bhatia | Software Engineer | React, Shopify & AI"
+    />
+
+    <meta
+      property="og:description"
+      content="Software Engineer specializing in React, Shopify, TypeScript, AI, and Full Stack Development."
+    />
+
+    <meta
+      property="og:image"
+      content="https://arpitbhatia.com/og-image.png"
+    />
+
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Arpit Bhatia | Full Stack Developer & Web Designer" />
-    <meta name="twitter:description" content="Explore Arpit Bhatia's portfolio – projects, tech stack, and more." />
-    <meta name="twitter:image" content="https://arpitbhatia.com/og-image.png" />
 
-    <!-- Robots -->
-    <meta name="robots" content="index, follow" />
+    <meta
+      name="twitter:title"
+      content="Arpit Bhatia | Software Engineer"
+    />
 
-    <!-- Theme Script -->
+    <meta
+      name="twitter:description"
+      content="React • Shopify • AI • Full Stack Development"
+    />
+
+    <meta
+      name="twitter:image"
+      content="https://arpitbhatia.com/og-image.png"
+    />
+
+    <!-- Replace with your X username -->
+    <meta name="twitter:creator" content="@focuscrafter" />
+    <meta name="twitter:site" content="@focuscrafter" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Arpit Bhatia",
+        "url": "https://arpitbhatia.com",
+        "image": "https://arpitbhatia.com/ab.png",
+        "jobTitle": "Software Engineer",
+        "description": "Software Engineer specializing in React, Shopify, AI and Full Stack Development.",
+        "nationality": "Indian",
+        "knowsAbout": [
+          "React",
+          "TypeScript",
+          "JavaScript",
+          "Next.js",
+          "Shopify",
+          "Node.js",
+          "GraphQL",
+          "REST APIs",
+          "Artificial Intelligence",
+          "Full Stack Development"
+        ],
+        "sameAs": [
+          "https://github.com/bhatiaarpit",
+          "https://www.linkedin.com/in/bhatiaarpit/",
+          "https://x.com/focuscrafter",
+        ]
+      }
+    </script>
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+
+    <!-- Theme Initialization -->
     <script>
-      (function() {
-        const theme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (theme === 'dark' || (!theme && prefersDark)) {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
+      (function () {
+        try {
+          const theme = localStorage.getItem("theme");
+          const prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+
+          if (theme === "dark" || (!theme && prefersDark)) {
+            document.documentElement.classList.add("dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+          }
+        } catch (e) {}
       })();
     </script>
   </head>
+
   <body>
+    <!-- React Root -->
     <div id="root"></div>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
