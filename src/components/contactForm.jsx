@@ -1,224 +1,175 @@
-import { useState, useEffect } from "react";
-import { useForm, ValidationError } from '@formspree/react';
+import { useState, useEffect, useRef } from "react";
+import { useForm, ValidationError } from "@formspree/react";
 import { X, CheckCircle, Send, Loader } from "lucide-react";
-import { Linkedin, Github, Twitter, Mail } from "lucide-react";
 
 const ContactPopup = ({ isOpen, onClose }) => {
   const [state, handleSubmit] = useForm("meqyyjqv");
+  const closeRef = useRef(null);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
 
-  // Close popup with escape key
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === "Escape") onClose();
     };
     if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden';
+      document.addEventListener("keydown", handleEscape);
+      document.body.style.overflow = "hidden";
+      closeRef.current?.focus();
     }
     return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'unset';
+      document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = "unset";
     };
   }, [isOpen, onClose]);
 
-  // Handle form success
   useEffect(() => {
     if (state.succeeded) {
-      // Reset form data
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      // Close popup after 2 seconds
-      setTimeout(() => {
-        onClose();
-      }, 2000);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      const timer = setTimeout(onClose, 2000);
+      return () => clearTimeout(timer);
     }
   }, [state.succeeded, onClose]);
 
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  const socialLinks = [
-    {
-      name: 'LinkedIn',
-      icon: <Linkedin className="w-5 h-5" />,
-      href: 'https://www.linkedin.com/in/bhatiaarpit',
-      color: 'hover:text-blue-500 hover:bg-blue-500/10'
-    },
-    {
-      name: 'GitHub',
-      icon: <Github className="w-5 h-5" />,
-      href: 'https://github.com/bhatiaarpit',
-      color: 'hover:text-gray-400 hover:bg-gray-400/10'
-    },
-    {
-      name: 'Twitter',
-      icon: <Twitter className="w-5 h-5" />,
-      href: 'https://x.com/arpit_bhatia_',
-      color: 'hover:text-sky-400 hover:bg-sky-400/10'
-    },
-    {
-      name: 'Email',
-      icon: <Mail className="w-5 h-5" />,
-      href: 'mailto:arpitbhatia903@gmail.com',
-      color: 'hover:text-cyan-400 hover:bg-cyan-400/10'
-    }
-  ];
-
   if (!isOpen) return null;
 
+  const fieldClass =
+    "w-full rounded-md border border-graphite-line bg-graphite px-4 py-3 text-graphite-ink placeholder:text-graphite-faint focus:border-graphite-ink";
+
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-gray-700">
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-700">
-          <div>
-            <h2 className="text-2xl font-bold text-white">Get In Touch</h2>
-          </div>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+      role="presentation"
+      onClick={onClose}
+    >
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="contact-title"
+        className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-xl border border-graphite-line bg-graphite-raised"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between border-b border-graphite-line p-5">
+          <h2 id="contact-title" className="font-serif text-2xl text-graphite-ink">
+            Get in touch
+          </h2>
           <button
+            ref={closeRef}
+            type="button"
             onClick={onClose}
-            className="p-2 hover:bg-gray-700 rounded-full transition-colors"
+            className="rounded-md p-2 text-graphite-mute hover:text-graphite-ink"
+            aria-label="Close contact form"
           >
-            <X className="w-6 h-6 text-gray-400 hover:text-white" />
+            <X className="h-5 w-5" />
           </button>
         </div>
 
-        <div className="p-6">
-          {/* Success Message */}
+        <div className="p-5">
           {state.succeeded && (
-            <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-lg mb-6">
-              <div className="flex items-center gap-2 text-green-400">
-                <CheckCircle className="w-5 h-5" />
-                <span className="font-medium">Thanks for reaching out! I'll get back to you soon.</span>
-              </div>
+            <div className="mb-5 flex items-center gap-2 rounded-md border border-graphite-line p-3 text-sm text-graphite-ink" role="status">
+              <CheckCircle className="h-5 w-5" aria-hidden="true" />
+              Thanks — I’ll get back to you soon.
             </div>
           )}
 
-          {/* Contact Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid gap-4 sm:grid-cols-2">
               <div>
+                <label htmlFor="contact-name" className="mb-1.5 block text-sm text-graphite-mute">
+                  Name
+                </label>
                 <input
+                  id="contact-name"
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
-                  placeholder="Your name"
+                  className={fieldClass}
+                  autoComplete="name"
                   required
                 />
-                <ValidationError 
-                  prefix="Name" 
-                  field="name"
-                  errors={state.errors}
-                  className="text-red-400 text-sm mt-1"
-                />
+                <ValidationError prefix="Name" field="name" errors={state.errors} className="mt-1 text-sm text-red-400" />
               </div>
               <div>
+                <label htmlFor="contact-email" className="mb-1.5 block text-sm text-graphite-mute">
+                  Email
+                </label>
                 <input
+                  id="contact-email"
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
-                  placeholder="your@email.com"
+                  className={fieldClass}
+                  autoComplete="email"
                   required
                 />
-                <ValidationError 
-                  prefix="Email" 
-                  field="email"
-                  errors={state.errors}
-                  className="text-red-400 text-sm mt-1"
-                />
+                <ValidationError prefix="Email" field="email" errors={state.errors} className="mt-1 text-sm text-red-400" />
               </div>
             </div>
 
             <div>
+              <label htmlFor="contact-subject" className="mb-1.5 block text-sm text-graphite-mute">
+                Subject
+              </label>
               <input
+                id="contact-subject"
                 type="text"
                 name="subject"
                 value={formData.subject}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
-                placeholder="Subject"
+                className={fieldClass}
                 required
               />
-              <ValidationError 
-                prefix="Subject" 
-                field="subject"
-                errors={state.errors}
-                className="text-red-400 text-sm mt-1"
-              />
+              <ValidationError prefix="Subject" field="subject" errors={state.errors} className="mt-1 text-sm text-red-400" />
             </div>
 
             <div>
+              <label htmlFor="contact-message" className="mb-1.5 block text-sm text-graphite-mute">
+                Message
+              </label>
               <textarea
+                id="contact-message"
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
                 rows={4}
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors resize-vertical"
-                placeholder="Your message"
+                className={`${fieldClass} resize-y`}
                 required
               />
-              <ValidationError 
-                prefix="Message" 
-                field="message"
-                errors={state.errors}
-                className="text-red-400 text-sm mt-1"
-              />
+              <ValidationError prefix="Message" field="message" errors={state.errors} className="mt-1 text-sm text-red-400" />
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               disabled={state.submitting}
-              className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-cyan-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-cyan-500/25 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-graphite-ink px-6 py-3 text-sm font-medium text-graphite disabled:cursor-not-allowed disabled:opacity-50"
             >
               {state.submitting ? (
                 <>
-                  <Loader className="w-4 h-4 animate-spin" />
-                  Sending...
+                  <Loader className="h-4 w-4 animate-spin" aria-hidden="true" />
+                  Sending
                 </>
               ) : (
                 <>
-                  Send Message
-                  <Send className="w-4 h-4" />
+                  Send message
+                  <Send className="h-4 w-4" aria-hidden="true" />
                 </>
               )}
             </button>
-
-            {/* General form errors */}
-            <ValidationError 
-              errors={state.errors}
-              className="text-red-400 text-sm text-center"
-            />
+            <ValidationError errors={state.errors} className="text-center text-sm text-red-400" />
           </form>
-
-          {/* Social Links */}
-          <div className="mt-8 pt-6 border-t border-gray-700">
-            <p className="text-gray-400 text-sm text-center mb-4">Or connect with me on</p>
-            <div className="flex justify-center gap-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  className={`p-2 rounded-lg bg-gray-800 text-gray-400 transition-all duration-300 ${social.color} hover:scale-110`}
-                  title={social.name}
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </div>

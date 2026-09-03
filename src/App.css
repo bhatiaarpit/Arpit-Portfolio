@@ -1,136 +1,114 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap');
-@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap');
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 @theme {
-  --color-primary: #1E40AF;
-  --color-secondary: #111827;
-  --color-accent: #ffffff;
-  --color-dark: #000000;
-  --color-light: #F3F4F6;
+  --color-graphite: #101010;
+  --color-graphite-raised: #171717;
+  --color-graphite-hover: #1f1f1f;
+  --color-graphite-line: #2c2c2c;
+  --color-graphite-ink: #f4f4f4;
+  --color-graphite-mute: #a8a8a8;
+  --color-graphite-faint: #737373;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
 }
 
-@theme .dark {
-  --color-primary: #1E3A8A;
-  --color-secondary: #1F2937;
-  --color-accent: #E5E7EB;
-  --color-dark: #000000;
-  --color-light: #D1D5DB;
+:root {
+  --font-satoshi: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-space: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-clash: "Instrument Serif", ui-serif, Georgia, serif;
+  color-scheme: dark;
 }
 
-/* CSS font variables and utility classes */
-:root{
-  --font-satoshi: 'Satoshi', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-space: 'Space Grotesk', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-  --font-clash: 'Clash Display', serif;
+.font-satoshi,
+.font-space {
+  font-family: var(--font-sans);
 }
 
-/* Utility classes */
-.font-satoshi { font-family: var(--font-satoshi) !important; }
-.font-space { font-family: var(--font-space) !important; }
-.font-clash { font-family: var(--font-clash) !important; }
-/* alias for legacy class name used in some files */
-.font-clash-display { font-family: var(--font-clash) !important; }
-/* hide scrollbar utility (keeps scrolling) */
+.font-clash,
+.font-clash-display {
+  font-family: var(--font-serif);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #101010;
+  color: #f4f4f4;
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid #f4f4f4;
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  background: #f4f4f4;
+  color: #101010;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
 .hide-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-.hide-scrollbar::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
+  scrollbar-width: thin;
+  scrollbar-color: #3a3a3a transparent;
 }
 
-@font-face {
-    font-family: 'TwitterChirp';
-    src: url('/twitterchirp.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  /* Apply globally (optional) */
-  body {
-    font-family: 'TwitterChirp', sans-serif;
-  }
-  @keyframes bgShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  
-  .animate-bg {
-    background-size: 300% 300%;
-    animation: bgShift 10s ease infinite;
-  }
-  
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .animate-fade-in-up {
-    animation: fadeInUp 0.8s ease-out forwards;
-  }
-  
-  /* Delay for different elements */
-  .animate-fade-in-up:nth-child(1) {
-    animation-delay: 0.2s;
-  }
-  .animate-fade-in-up:nth-child(2) {
-    animation-delay: 0.4s;
-  }
-  .animate-fade-in-up:nth-child(3) {
-    animation-delay: 0.6s;
-  }
-  
-
-  @keyframes orbit {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-orbit {
-  animation: orbit 10s linear infinite;
-}
-
-.orbit-dot {
-  transform: rotate(0deg) translateX(90px);
-  animation: orbit 6s linear infinite;
-}
-
-/* ✅ Target react-activity-calendar internal scrollbar */
 .github-scroll .react-activity-calendar__scroll-container {
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: rgba(34, 211, 238, 0.8) transparent;
+  scrollbar-width: thin;
+  scrollbar-color: #5c5c5c transparent;
 }
 
-/* Chrome / Edge / Safari */
 .github-scroll .react-activity-calendar__scroll-container::-webkit-scrollbar {
-  height: 2px; /* ✅ line scrollbar */
-}
-
-.github-scroll .react-activity-calendar__scroll-container::-webkit-scrollbar-track {
-  background: transparent;
+  height: 4px;
 }
 
 .github-scroll .react-activity-calendar__scroll-container::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    90deg,
-    rgba(59, 130, 246, 0.95),
-    rgba(34, 211, 238, 0.95)
-  );
+  background: #5c5c5c;
   border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

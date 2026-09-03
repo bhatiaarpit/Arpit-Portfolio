@@ -1,46 +1,38 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState } from "react";
-import Navbar from './components/navbarSection';
 import Footer from "./components/footer";
 import Home from './pages/home';
 import About from './pages/about';
-// import Projects from './pages/projects';
-// import CustomCursor from "./components/customCursor";
 import Insights from './pages/insights';
 import './App.css';
-import './index.css';
 import ExploreMore from './pages/more';
 import ContactPopup from "./components/contactForm";
 import MyWork from './pages/my-work';
+import Sidebar from './components/Sidebar';
+import Experience from './pages/experience';
 
 function App() {
   const [contactOpen, setContactOpen] = useState(false);
 
   return (
     <Router>
-      <div className="app-container flex bg-gray-900 text-gray-300">
-
-        {/* Main Content */}
-        <div className="flex-1 flex flex-col">
-          {/* Navbar */}
-          <Navbar onBookCall={() => setContactOpen(true)} />
-
-          {/* Page Content */}
-          <div className="flex-1 overflow-y-auto">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              {/* <Route path="/projects" element={<Projects />} /> */}
-              <Route path="/insights" element={<Insights />} />
-              <Route path="/more" element={<ExploreMore />} />
-              <Route path="/my-work" element={<MyWork />} />
-
-            </Routes>
-          </div>
-          {/* <CustomCursor/> */}
-          <Footer onContactClick={() => setContactOpen(true)} />
-          <ContactPopup isOpen={contactOpen} onClose={() => setContactOpen(false)} />
-        </div>
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+      <div className="app-container min-h-screen flex flex-col bg-graphite text-graphite-ink">
+        <Sidebar />
+        <main id="main-content" className="flex-1 pl-[72px] lg:pl-[88px]">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/insights" element={<Insights />} />
+            <Route path="/more" element={<ExploreMore />} />
+            <Route path="/my-work" element={<MyWork />} />
+            <Route path="/experience" element={<Experience />} />
+          </Routes>
+        </main>
+        <Footer onContactClick={() => setContactOpen(true)} />
+        <ContactPopup isOpen={contactOpen} onClose={() => setContactOpen(false)} />
       </div>
     </Router>
   );
