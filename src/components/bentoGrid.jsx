@@ -83,8 +83,8 @@ const BentoGrid = () => {
                       to="/my-work#projects"
                       className="flex items-baseline justify-between gap-4 py-4 hover:text-white"
                     >
-                      <span className="text-graphite-ink">{item.name}</span>
-                      <span className="text-sm text-graphite-faint">View project</span>
+                      <span className="min-w-0 break-words text-graphite-ink">{item.name}</span>
+                      <span className="shrink-0 text-sm text-graphite-faint">View project</span>
                     </Link>
                   </li>
                 ))}

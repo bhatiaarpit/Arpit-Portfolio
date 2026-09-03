@@ -267,7 +267,7 @@ const TechGlobe = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative h-[min(76vw,28rem)] w-full overflow-hidden sm:h-[28rem]">
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center z-20">
           <div className="text-blue-400 text-xl font-mono animate-pulse">

@@ -21,7 +21,7 @@ function App() {
       </a>
       <div className="app-container min-h-screen flex flex-col bg-graphite text-graphite-ink">
         <Sidebar />
-        <main id="main-content" className="flex-1 pl-[72px] lg:pl-[88px]">
+        <main id="main-content" className="flex-1 pl-0 md:pl-[72px] lg:pl-[88px]">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />

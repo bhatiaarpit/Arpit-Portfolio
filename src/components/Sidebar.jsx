@@ -6,10 +6,13 @@ import {
   House,
   Linkedin,
   Mail,
+  Menu,
   MoreHorizontal,
   Youtube,
+  X,
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const navigation = [
   { label: "Home", to: "/", icon: House },
@@ -32,8 +35,91 @@ const socials = [
 ];
 
 const Sidebar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.classList.toggle("overflow-hidden", isMenuOpen);
+    return () => document.body.classList.remove("overflow-hidden");
+  }, [isMenuOpen]);
+
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
-    <aside className="fixed left-0 top-0 z-50 flex h-screen w-[72px] flex-col border-r border-graphite-line bg-graphite lg:w-[88px]">
+    <>
+      <button
+        type="button"
+        onClick={() => setIsMenuOpen(true)}
+        aria-label="Open menu"
+        aria-expanded={isMenuOpen}
+        className="fixed right-4 top-4 z-50 flex h-11 w-11 items-center justify-center rounded-md border border-graphite-line bg-graphite-raised text-graphite-ink md:hidden"
+      >
+        <Menu size={20} aria-hidden="true" />
+      </button>
+
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-[60] md:hidden">
+          <button
+            type="button"
+            onClick={closeMenu}
+            aria-label="Close menu"
+            className="absolute inset-0 bg-black/70"
+          />
+          <div className="absolute right-0 top-0 flex h-full w-[min(86vw,360px)] flex-col border-l border-graphite-line bg-graphite px-6 py-5">
+            <div className="flex items-center justify-between border-b border-graphite-line pb-5">
+              <NavLink to="/" onClick={closeMenu} className="flex items-center">
+                <img src="/ab2.png" alt="Arpit Bhatia" className="h-9 w-auto grayscale" />
+              </NavLink>
+              <button
+                type="button"
+                onClick={closeMenu}
+                aria-label="Close menu"
+                className="flex h-10 w-10 items-center justify-center rounded-md text-graphite-ink"
+              >
+                <X size={21} aria-hidden="true" />
+              </button>
+            </div>
+            <nav className="flex flex-col gap-1 py-8" aria-label="Mobile primary">
+              {navigation.map((item) => (
+                <NavLink
+                  key={item.label}
+                  to={item.to}
+                  end={item.to === "/"}
+                  onClick={closeMenu}
+                  className={({ isActive }) =>
+                    `flex items-center gap-4 border-b border-graphite-line py-4 text-lg ${
+                      isActive ? "text-graphite-ink" : "text-graphite-mute"
+                    }`
+                  }
+                >
+                  <item.icon size={19} strokeWidth={1.6} aria-hidden="true" />
+                  {item.label}
+                </NavLink>
+              ))}
+            </nav>
+            <div className="mt-auto flex gap-4 border-t border-graphite-line pt-6">
+              {socials.map((social) => {
+                const Icon = social.icon;
+                const isExternal = social.href.startsWith("http");
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noreferrer" : undefined}
+                    aria-label={social.label}
+                    title={social.label}
+                    className="text-graphite-faint hover:text-graphite-ink"
+                  >
+                    <Icon size={18} strokeWidth={1.5} aria-hidden="true" />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      <aside className="fixed left-0 top-0 z-50 hidden h-screen w-[72px] flex-col border-r border-graphite-line bg-graphite md:flex lg:w-[88px]">
       <div className="flex h-[72px] items-center justify-center border-b border-graphite-line lg:h-[88px]">
         <NavLink
           to="/"
@@ -51,6 +137,7 @@ const Sidebar = () => {
             <NavLink
               key={item.label}
               to={item.to}
+              end={item.to === "/"}
               aria-label={item.label}
               title={item.label}
               className={({ isActive }) =>
@@ -103,7 +190,8 @@ const Sidebar = () => {
         </div>
         <div className="mt-7 h-px w-8 bg-graphite-line" />
       </div>
-    </aside>
+      </aside>
+    </>
   );
 };
 

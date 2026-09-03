@@ -17,7 +17,7 @@ const Footer = ({ onContactClick }) => {
   };
 
   return (
-    <footer className="border-t border-graphite-line bg-graphite pl-[72px] lg:pl-[88px]">
+    <footer className="border-t border-graphite-line bg-graphite pl-0 md:pl-[72px] lg:pl-[88px]">
       <div className="mx-auto flex max-w-5xl flex-col gap-10 px-5 py-14 sm:px-6 md:flex-row md:justify-between">
         <div className="max-w-sm">
           <p className="font-serif text-2xl text-graphite-ink">Arpit Bhatia</p>
