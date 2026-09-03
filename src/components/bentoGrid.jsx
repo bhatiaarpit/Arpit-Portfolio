@@ -78,12 +78,12 @@ const BentoGrid = () => {
               </div>
               <ul className="divide-y divide-graphite-line border-y border-graphite-line">
                 {projects.slice(0, 5).map((item) => (
-                  <li key={item.id}>
+                  <li key={item.title}>
                     <Link
                       to="/my-work#projects"
                       className="flex items-baseline justify-between gap-4 py-4 hover:text-white"
                     >
-                      <span className="min-w-0 break-words text-graphite-ink">{item.name}</span>
+                      <span className="min-w-0 break-words text-graphite-ink">{item.title}</span>
                       <span className="shrink-0 text-sm text-graphite-faint">View project</span>
                     </Link>
                   </li>
