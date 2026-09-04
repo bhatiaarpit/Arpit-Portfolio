@@ -13,7 +13,7 @@ const ProjectsSection = () => {
             <img
               src={project.image}
               alt={`${project.title} preview`}
-              className="h-44 w-full object-cover grayscale"
+              className="h-44 w-full object-cover"
             />
             <div className="space-y-3 p-5">
               <h3 className="text-lg text-graphite-ink">{project.title}</h3>

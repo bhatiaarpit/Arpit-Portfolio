@@ -12,7 +12,8 @@ import {
   X,
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import gsap from "gsap";
 
 const navigation = [
   { label: "Home", to: "/", icon: House },
@@ -36,16 +37,60 @@ const socials = [
 
 const Sidebar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const mobileMenuRef = useRef(null);
+  const mobileBackdropRef = useRef(null);
+  const mobilePanelRef = useRef(null);
 
   useEffect(() => {
     document.body.classList.toggle("overflow-hidden", isMenuOpen);
     return () => document.body.classList.remove("overflow-hidden");
   }, [isMenuOpen]);
 
+  useLayoutEffect(() => {
+    if (!mobileMenuRef.current || !mobileBackdropRef.current || !mobilePanelRef.current) return;
+
+    const animation = gsap.context(() => {
+      if (isMenuOpen) {
+        gsap.set(mobileMenuRef.current, { display: "block" });
+        gsap.fromTo(
+          mobileBackdropRef.current,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.25, ease: "power2.out" }
+        );
+        gsap.fromTo(
+          mobilePanelRef.current,
+          { xPercent: 100 },
+          { xPercent: 0, duration: 0.45, ease: "power3.out" }
+        );
+      } else {
+        gsap.to(mobileBackdropRef.current, {
+          opacity: 0,
+          duration: 0.2,
+          ease: "power2.in",
+        });
+        gsap.to(mobilePanelRef.current, {
+          xPercent: 100,
+          duration: 0.35,
+          ease: "power3.in",
+          onComplete: () => gsap.set(mobileMenuRef.current, { display: "none" }),
+        });
+      }
+    }, mobileMenuRef);
+
+    return () => animation.revert();
+  }, [isMenuOpen]);
+
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <>
+      <NavLink
+        to="/"
+        aria-label="Arpit Bhatia, home"
+        className="fixed left-4 top-4 z-50 flex items-center md:hidden"
+      >
+        <img src="/ab2.png" alt="Arpit Bhatia" className="h-9 w-auto grayscale" />
+      </NavLink>
       <button
         type="button"
         onClick={() => setIsMenuOpen(true)}
@@ -56,15 +101,15 @@ const Sidebar = () => {
         <Menu size={20} aria-hidden="true" />
       </button>
 
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-[60] md:hidden">
+      <div ref={mobileMenuRef} className="fixed inset-0 z-[60] hidden md:hidden">
           <button
             type="button"
             onClick={closeMenu}
             aria-label="Close menu"
-            className="absolute inset-0 bg-black/70"
+            ref={mobileBackdropRef}
+            className="absolute inset-0 bg-black/70 opacity-0"
           />
-          <div className="absolute right-0 top-0 flex h-full w-[min(86vw,360px)] flex-col border-l border-graphite-line bg-graphite px-6 py-5">
+          <div ref={mobilePanelRef} className="absolute right-0 top-0 flex h-full w-[min(86vw,360px)] translate-x-full flex-col border-l border-graphite-line bg-graphite px-6 py-5">
             <div className="flex items-center justify-between border-b border-graphite-line pb-5">
               <NavLink to="/" onClick={closeMenu} className="flex items-center">
                 <img src="/ab2.png" alt="Arpit Bhatia" className="h-9 w-auto grayscale" />
@@ -116,8 +161,7 @@ const Sidebar = () => {
               })}
             </div>
           </div>
-        </div>
-      )}
+      </div>
 
       <aside className="fixed left-0 top-0 z-50 hidden h-screen w-[72px] flex-col border-r border-graphite-line bg-graphite md:flex lg:w-[88px]">
       <div className="flex h-[72px] items-center justify-center border-b border-graphite-line lg:h-[88px]">

@@ -1,0 +1,86 @@
+[
+  {
+    "type": "Project",
+    "title": "Graphell",
+    "description": "Full-stack task tracking and team collaboration platform.",
+    "date": "Latest build",
+    "href": "/my-work"
+  },
+  {
+    "type": "Project",
+    "title": "GDG Lucknow",
+    "description": "Community website built for Google Developer Group Lucknow.",
+    "date": "Featured work",
+    "href": "/my-work"
+  },
+  {
+    "type": "Project",
+    "title": "Twitter UI Clone",
+    "description": "Responsive social interface with uploads and filtering.",
+    "date": "Recent build",
+    "href": "/my-work"
+  },
+  {
+    "type": "Project",
+    "title": "MoovieMate",
+    "description": "Movie discovery experience powered by the TMDB API.",
+    "date": "Project",
+    "href": "/my-work"
+  },
+  {
+    "type": "Experience",
+    "title": "Building at Marmeto",
+    "description": "Shipping Shopify storefronts, apps, and product interfaces as SDE 1.",
+    "date": "Oct 2024 - Present",
+    "href": "/experience"
+  },
+  {
+    "type": "Experience",
+    "title": "Shopify frontend training",
+    "description": "Converted Figma designs into responsive storefront modules.",
+    "date": "Aug 2024 - Oct 2024",
+    "href": "/experience"
+  },
+  {
+    "type": "Blog",
+    "title": "GraphQL and AI for productivity",
+    "description": "Notes from building a data-driven expense tracking platform.",
+    "date": "Coming soon",
+    "href": "/insights"
+  },
+  {
+    "type": "Community",
+    "title": "GDG Lucknow community work",
+    "description": "Creating useful spaces for developers to learn and connect.",
+    "date": "Community",
+    "href": "/insights"
+  },
+  {
+    "type": "Project",
+    "title": "Lallan",
+    "description": "Lucknow-focused chatbot with a fast, simple chat interface.",
+    "date": "Project",
+    "href": "/my-work"
+  },
+  {
+    "type": "Project",
+    "title": "On The Go",
+    "description": "Travel planning and itinerary management in the browser.",
+    "date": "Project",
+    "href": "/my-work"
+  },
+  {
+    "type": "Project",
+    "title": "Ray-Ban Website",
+    "description": "Interactive e-commerce landing page inspired by Ray-Ban.",
+    "date": "Project",
+    "href": "/my-work"
+  },
+  {
+    "type": "Learning",
+    "title": "Exploring AI-powered interfaces",
+    "description": "Experimenting with practical ways to make product experiences smarter.",
+    "date": "In progress",
+    "href": "/more"
+  }
+]
