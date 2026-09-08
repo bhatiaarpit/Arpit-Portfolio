@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const HeroSection = () => {
   return (
     <section className="relative flex min-h-[70vh] items-center pt-20 pb-14 lg:min-h-[72vh]">
-      <div className="mx-auto w-full max-w-5xl px-5 sm:px-6">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <p className="mb-6 text-sm tracking-[0.18em] uppercase text-graphite-faint">
           Software Engineer
         </p>

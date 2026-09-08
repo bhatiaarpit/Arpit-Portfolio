@@ -2,6 +2,7 @@ import {
   ArrowUpRight,
   BookOpen,
   BriefcaseBusiness,
+  ChevronRight,
   Github,
   House,
   Linkedin,
@@ -42,8 +43,16 @@ const Sidebar = () => {
   const mobilePanelRef = useRef(null);
 
   useEffect(() => {
+    document.documentElement.classList.toggle("overflow-hidden", isMenuOpen);
     document.body.classList.toggle("overflow-hidden", isMenuOpen);
-    return () => document.body.classList.remove("overflow-hidden");
+    document.documentElement.style.overflow = isMenuOpen ? "hidden" : "";
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
+    return () => {
+      document.documentElement.classList.remove("overflow-hidden");
+      document.body.classList.remove("overflow-hidden");
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    };
   }, [isMenuOpen]);
 
   useLayoutEffect(() => {
@@ -96,9 +105,9 @@ const Sidebar = () => {
         onClick={() => setIsMenuOpen(true)}
         aria-label="Open menu"
         aria-expanded={isMenuOpen}
-        className="fixed right-4 top-4 z-50 flex h-11 w-11 items-center justify-center rounded-md border border-graphite-line bg-graphite-raised text-graphite-ink md:hidden"
+        className="fixed right-4 top-4 z-50 flex h-11 w-11 items-center justify-center rounded-md border border-graphite-mute bg-graphite-raised text-graphite-ink shadow-[0_0_0_1px_rgba(244,244,244,0.08)] md:hidden"
       >
-        <Menu size={20} aria-hidden="true" />
+        <Menu size={22} strokeWidth={2.25} aria-hidden="true" />
       </button>
 
       <div ref={mobileMenuRef} className="fixed inset-0 z-[60] hidden md:hidden">
@@ -109,8 +118,8 @@ const Sidebar = () => {
             ref={mobileBackdropRef}
             className="absolute inset-0 bg-black/70 opacity-0"
           />
-          <div ref={mobilePanelRef} className="absolute right-0 top-0 flex h-full w-[min(86vw,360px)] translate-x-full flex-col border-l border-graphite-line bg-graphite px-6 py-5">
-            <div className="flex items-center justify-between border-b border-graphite-line pb-5">
+          <div ref={mobilePanelRef} className="absolute right-0 top-0 flex h-full w-[min(86vw,360px)] flex-col overflow-y-auto border-l border-graphite-line bg-graphite px-6 py-5">
+            <div className="relative flex items-center justify-between border-b border-graphite-line pb-5">
               <NavLink to="/" onClick={closeMenu} className="flex items-center">
                 <img src="/ab2.png" alt="Arpit Bhatia" className="h-9 w-auto grayscale" />
               </NavLink>
@@ -123,7 +132,7 @@ const Sidebar = () => {
                 <X size={21} aria-hidden="true" />
               </button>
             </div>
-            <nav className="flex flex-col gap-1 py-8" aria-label="Mobile primary">
+            <nav className="flex flex-col gap-1 pt-4" aria-label="Mobile primary">
               {navigation.map((item) => (
                 <NavLink
                   key={item.label}
@@ -131,34 +140,53 @@ const Sidebar = () => {
                   end={item.to === "/"}
                   onClick={closeMenu}
                   className={({ isActive }) =>
-                    `flex items-center gap-4 border-b border-graphite-line py-4 text-lg ${
-                      isActive ? "text-graphite-ink" : "text-graphite-mute"
+                    `group flex items-center justify-between rounded-md px-3 py-3 text-base transition-colors ${
+                      isActive
+                        ? "bg-graphite-raised text-graphite-ink"
+                        : "text-graphite-mute hover:bg-graphite-raised hover:text-graphite-ink"
                     }`
                   }
                 >
-                  <item.icon size={19} strokeWidth={1.6} aria-hidden="true" />
-                  {item.label}
+                  <span className="flex items-center gap-4">
+                    <item.icon size={19} strokeWidth={1.5} aria-hidden="true" />
+                    {item.label}
+                  </span>
+                  <ChevronRight
+                    size={18}
+                    strokeWidth={1.5}
+                    className="text-graphite-faint transition-transform group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  />
                 </NavLink>
               ))}
             </nav>
-            <div className="mt-auto flex gap-4 border-t border-graphite-line pt-6">
-              {socials.map((social) => {
-                const Icon = social.icon;
-                const isExternal = social.href.startsWith("http");
-                return (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target={isExternal ? "_blank" : undefined}
-                    rel={isExternal ? "noreferrer" : undefined}
-                    aria-label={social.label}
-                    title={social.label}
-                    className="text-graphite-faint hover:text-graphite-ink"
-                  >
-                    <Icon size={18} strokeWidth={1.5} aria-hidden="true" />
-                  </a>
-                );
-              })}
+            <div className="mt-auto border-t border-graphite-line pt-5 pb-1">
+              <div className="flex items-center gap-2">
+                <p className="font-serif text-2xl text-graphite-ink">Let&apos;s connect</p>
+                <ArrowUpRight size={22} strokeWidth={1.7} className="text-white" aria-hidden="true" />
+              </div>
+              <div className="mt-5 flex items-center gap-5">
+                {socials.map((social) => {
+                  const Icon = social.icon;
+                  const isExternal = social.href.startsWith("http");
+                  return (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target={isExternal ? "_blank" : undefined}
+                      rel={isExternal ? "noreferrer" : undefined}
+                      aria-label={social.label}
+                      title={social.label}
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-graphite-line text-graphite-mute transition-colors hover:border-white hover:text-white"
+                    >
+                      <Icon size={17} strokeWidth={1.5} aria-hidden="true" />
+                    </a>
+                  );
+                })}
+              </div>
+              <p className="mt-6 text-[8px] uppercase tracking-[0.28em] text-graphite-faint">
+                Build&nbsp; / &nbsp;Learn&nbsp; / &nbsp;Share
+              </p>
             </div>
           </div>
       </div>
