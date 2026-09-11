@@ -7,22 +7,24 @@ import {
   House,
   Linkedin,
   Mail,
-  Menu,
   MoreHorizontal,
   Youtube,
   X,
 } from "lucide-react";
-import { NavLink } from "react-router-dom";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import gsap from "gsap";
+import { NavLink, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const navigation = [
   { label: "Home", to: "/", icon: House },
+  { label: "About", to: "/about", icon: BookOpen },
   { label: "Projects", to: "/my-work", icon: BriefcaseBusiness },
   { label: "Experience", to: "/experience", icon: BookOpen },
   { label: "Blogs", to: "/insights", icon: BookOpen },
   { label: "More", to: "/more", icon: MoreHorizontal },
 ];
+
+const routeOrder = ["/", "/about", "/my-work", "/experience", "/insights", "/more"];
 
 const socials = [
   { label: "GitHub", href: "https://github.com/bhatiaarpit", icon: Github },
@@ -38,9 +40,17 @@ const socials = [
 
 const Sidebar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const mobileMenuRef = useRef(null);
-  const mobileBackdropRef = useRef(null);
-  const mobilePanelRef = useRef(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [menuExitDirection, setMenuExitDirection] = useState(1);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 12);
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     document.documentElement.classList.toggle("overflow-hidden", isMenuOpen);
@@ -55,44 +65,22 @@ const Sidebar = () => {
     };
   }, [isMenuOpen]);
 
-  useLayoutEffect(() => {
-    if (!mobileMenuRef.current || !mobileBackdropRef.current || !mobilePanelRef.current) return;
-
-    const animation = gsap.context(() => {
-      if (isMenuOpen) {
-        gsap.set(mobileMenuRef.current, { display: "block" });
-        gsap.fromTo(
-          mobileBackdropRef.current,
-          { opacity: 0 },
-          { opacity: 1, duration: 0.25, ease: "power2.out" }
-        );
-        gsap.fromTo(
-          mobilePanelRef.current,
-          { xPercent: 100 },
-          { xPercent: 0, duration: 0.45, ease: "power3.out" }
-        );
-      } else {
-        gsap.to(mobileBackdropRef.current, {
-          opacity: 0,
-          duration: 0.2,
-          ease: "power2.in",
-        });
-        gsap.to(mobilePanelRef.current, {
-          xPercent: 100,
-          duration: 0.35,
-          ease: "power3.in",
-          onComplete: () => gsap.set(mobileMenuRef.current, { display: "none" }),
-        });
-      }
-    }, mobileMenuRef);
-
-    return () => animation.revert();
-  }, [isMenuOpen]);
-
   const closeMenu = () => setIsMenuOpen(false);
+  const closeMenuForRoute = (targetPath) => {
+    const currentIndex = routeOrder.indexOf(location.pathname);
+    const targetIndex = routeOrder.indexOf(targetPath);
+    setMenuExitDirection(targetIndex > currentIndex ? -1 : 1);
+    closeMenu();
+  };
 
   return (
     <>
+      <div
+        aria-hidden="true"
+        className={`pointer-events-none fixed inset-x-0 top-0 z-40 h-[72px] border-b border-transparent bg-graphite/70 backdrop-blur-xl transition-all duration-300 md:hidden ${
+          isScrolled ? "opacity-100" : "opacity-0"
+        }`}
+      />
       <NavLink
         to="/"
         aria-label="Arpit Bhatia, home"
@@ -105,22 +93,54 @@ const Sidebar = () => {
         onClick={() => setIsMenuOpen(true)}
         aria-label="Open menu"
         aria-expanded={isMenuOpen}
-        className="fixed right-4 top-4 z-50 flex h-11 w-11 items-center justify-center rounded-md border border-graphite-mute bg-graphite-raised text-graphite-ink shadow-[0_0_0_1px_rgba(244,244,244,0.08)] md:hidden"
+        className="fixed right-4 top-4 z-50 flex h-11 w-11 items-center justify-center bg-transparent text-graphite-ink md:hidden"
       >
-        <Menu size={22} strokeWidth={2.25} aria-hidden="true" />
+        <svg
+          width="28"
+          height="28"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            d="M3 12h18M9 18h12M3 6h12"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+          />
+        </svg>
       </button>
 
-      <div ref={mobileMenuRef} className="fixed inset-0 z-[60] hidden md:hidden">
-          <button
-            type="button"
-            onClick={closeMenu}
-            aria-label="Close menu"
-            ref={mobileBackdropRef}
-            className="absolute inset-0 bg-black/70 opacity-0"
-          />
-          <div ref={mobilePanelRef} className="absolute right-0 top-0 flex h-full w-[min(86vw,360px)] flex-col overflow-y-auto border-l border-graphite-line bg-graphite px-6 py-5">
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            className="fixed inset-0 z-[60] md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <button
+              type="button"
+              onClick={closeMenu}
+              aria-label="Close menu"
+              className="absolute inset-0 bg-black/75"
+            />
+            <motion.div
+              className="relative flex h-full w-full flex-col overflow-y-auto bg-graphite px-6 py-5"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              custom={menuExitDirection}
+              exit={(direction) => ({ x: `${direction * 100}%` })}
+              transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation"
+            >
             <div className="relative flex items-center justify-between border-b border-graphite-line pb-5">
-              <NavLink to="/" onClick={closeMenu} className="flex items-center">
+              <NavLink to="/" onClick={() => closeMenuForRoute("/")} className="flex items-center">
                 <img src="/ab2.png" alt="Arpit Bhatia" className="h-9 w-auto grayscale" />
               </NavLink>
               <button
@@ -132,34 +152,47 @@ const Sidebar = () => {
                 <X size={21} aria-hidden="true" />
               </button>
             </div>
-            <nav className="flex flex-col gap-1 pt-4" aria-label="Mobile primary">
+            <motion.nav
+              className="flex flex-col gap-1 pt-4"
+              aria-label="Mobile primary"
+              initial="hidden"
+              animate="visible"
+              variants={{ visible: { transition: { staggerChildren: 0.055, delayChildren: 0.14 } } }}
+            >
               {navigation.map((item) => (
-                <NavLink
+                <motion.div
                   key={item.label}
-                  to={item.to}
-                  end={item.to === "/"}
-                  onClick={closeMenu}
-                  className={({ isActive }) =>
-                    `group flex items-center justify-between rounded-md px-3 py-3 text-base transition-colors ${
-                      isActive
-                        ? "bg-graphite-raised text-graphite-ink"
-                        : "text-graphite-mute hover:bg-graphite-raised hover:text-graphite-ink"
-                    }`
-                  }
+                  variants={{
+                    hidden: { opacity: 0, x: 18 },
+                    visible: { opacity: 1, x: 0, transition: { duration: 0.35, ease: "easeOut" } },
+                  }}
                 >
-                  <span className="flex items-center gap-4">
-                    <item.icon size={19} strokeWidth={1.5} aria-hidden="true" />
-                    {item.label}
-                  </span>
-                  <ChevronRight
-                    size={18}
-                    strokeWidth={1.5}
-                    className="text-graphite-faint transition-transform group-hover:translate-x-0.5"
-                    aria-hidden="true"
-                  />
-                </NavLink>
+                  <NavLink
+                    to={item.to}
+                    end={item.to === "/"}
+                    onClick={() => closeMenuForRoute(item.to)}
+                    className={({ isActive }) =>
+                      `group flex items-center justify-between rounded-md px-3 py-3 text-base transition-colors ${
+                        isActive
+                          ? "bg-graphite-raised text-graphite-ink"
+                          : "text-graphite-mute hover:bg-graphite-raised hover:text-graphite-ink"
+                      }`
+                    }
+                  >
+                    <span className="flex items-center gap-4">
+                      <item.icon size={19} strokeWidth={1.5} aria-hidden="true" />
+                      {item.label}
+                    </span>
+                    <ChevronRight
+                      size={18}
+                      strokeWidth={1.5}
+                      className="text-graphite-faint transition-transform group-hover:translate-x-0.5"
+                      aria-hidden="true"
+                    />
+                  </NavLink>
+                </motion.div>
               ))}
-            </nav>
+            </motion.nav>
             <div className="mt-auto border-t border-graphite-line pt-5 pb-1">
               <div className="flex items-center gap-2">
                 <p className="font-serif text-2xl text-graphite-ink">Let&apos;s connect</p>
@@ -188,8 +221,10 @@ const Sidebar = () => {
                 Build&nbsp; / &nbsp;Learn&nbsp; / &nbsp;Share
               </p>
             </div>
-          </div>
-      </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <aside className="fixed left-0 top-0 z-50 hidden h-screen w-[72px] flex-col border-r border-graphite-line bg-graphite md:flex lg:w-[88px]">
       <div className="flex h-[72px] items-center justify-center border-b border-graphite-line lg:h-[88px]">
