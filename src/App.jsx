@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import Footer from "./components/footer";
@@ -17,6 +17,7 @@ const routeOrder = ["/", "/about", "/my-work", "/experience", "/insights", "/mor
 
 function AnimatedRoutes() {
   const location = useLocation();
+  const [hasMounted, setHasMounted] = useState(false);
   const previousPathRef = useRef(location.pathname);
   const previousIndex = routeOrder.indexOf(previousPathRef.current);
   const currentIndex = routeOrder.indexOf(location.pathname);
@@ -24,8 +25,12 @@ function AnimatedRoutes() {
 
   previousPathRef.current = location.pathname;
 
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
   const pageMotion = {
-    initial: { opacity: 0, x: direction * 64 },
+    initial: hasMounted ? { opacity: 0, x: direction * 64 } : { opacity: 1, x: 0 },
     animate: { opacity: 1, x: 0 },
     exit: { opacity: 0, x: direction * -64 },
   };
