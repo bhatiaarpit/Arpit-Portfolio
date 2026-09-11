@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import Footer from "./components/footer";
@@ -17,9 +17,6 @@ const routeOrder = ["/", "/about", "/my-work", "/experience", "/insights", "/mor
 
 function AnimatedRoutes() {
   const location = useLocation();
-  const [isDesktop, setIsDesktop] = useState(() =>
-    typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches
-  );
   const previousPathRef = useRef(location.pathname);
   const previousIndex = routeOrder.indexOf(previousPathRef.current);
   const currentIndex = routeOrder.indexOf(location.pathname);
@@ -27,27 +24,11 @@ function AnimatedRoutes() {
 
   previousPathRef.current = location.pathname;
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
-    const handleViewportChange = (event) => setIsDesktop(event.matches);
-
-    setIsDesktop(mediaQuery.matches);
-    mediaQuery.addEventListener("change", handleViewportChange);
-
-    return () => mediaQuery.removeEventListener("change", handleViewportChange);
-  }, []);
-
-  const pageMotion = isDesktop
-    ? {
-        initial: { opacity: 0, y: 36 },
-        animate: { opacity: 1, x: 0, y: 0 },
-        exit: { opacity: 0, y: -28 },
-      }
-    : {
-        initial: { opacity: 0, x: direction * 48 },
-        animate: { opacity: 1, x: 0, y: 0 },
-        exit: { opacity: 0, x: direction * -48 },
-      };
+  const pageMotion = {
+    initial: { opacity: 0, x: direction * 64 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: direction * -64 },
+  };
 
   return (
     <AnimatePresence mode="wait" initial={false}>
@@ -56,7 +37,7 @@ function AnimatedRoutes() {
         initial={pageMotion.initial}
         animate={pageMotion.animate}
         exit={pageMotion.exit}
-        transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
         className="min-h-full"
       >
         <Routes location={location}>
