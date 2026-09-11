@@ -1,9 +1,71 @@
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import growthVideo from "../assets/gowthm.mp4";
 
 const HeroSection = () => {
+  const videoRef = useRef(null);
+  const reverseFrameRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+
+    if (!video) return undefined;
+
+    const stopReversePlayback = () => {
+      if (reverseFrameRef.current) {
+        cancelAnimationFrame(reverseFrameRef.current);
+        reverseFrameRef.current = null;
+      }
+    };
+
+    const playForward = () => {
+      stopReversePlayback();
+      video.play().catch(() => {});
+    };
+
+    const playInReverse = () => {
+      video.pause();
+
+      const stepBackward = () => {
+        video.currentTime = Math.max(0, video.currentTime - 1 / 60);
+
+        if (video.currentTime <= 0.01) {
+          video.currentTime = 0;
+          playForward();
+          return;
+        }
+
+        reverseFrameRef.current = requestAnimationFrame(stepBackward);
+      };
+
+      stopReversePlayback();
+      reverseFrameRef.current = requestAnimationFrame(stepBackward);
+    };
+
+    video.addEventListener("ended", playInReverse);
+    video.addEventListener("loadedmetadata", playForward);
+
+    return () => {
+      stopReversePlayback();
+      video.removeEventListener("ended", playInReverse);
+      video.removeEventListener("loadedmetadata", playForward);
+      video.pause();
+    };
+  }, []);
+
   return (
-    <section className="relative flex min-h-[70vh] items-center pt-20 pb-14 lg:min-h-[72vh]">
-      <div className="w-full px-4 sm:px-6 lg:px-8">
+    <section className="relative isolate flex min-h-[70vh] items-center overflow-hidden pt-20 pb-14 lg:min-h-[72vh]">
+      <video
+        ref={videoRef}
+        className="absolute inset-0 -z-20 h-full w-full object-cover object-center opacity-45"
+        src={growthVideo}
+        muted
+        playsInline
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-graphite via-graphite/80 to-graphite/30" />
+      <div className="absolute inset-0 -z-10 bg-graphite/20" />
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8">
         <p className="mb-6 text-sm tracking-[0.18em] uppercase text-graphite-faint">
           Software Engineer
         </p>
