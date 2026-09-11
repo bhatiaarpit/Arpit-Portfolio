@@ -103,12 +103,39 @@ const Sidebar = () => {
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
         >
+          <defs>
+            <linearGradient id="menu-icon-shine-gradient" x1="-24" y1="0" x2="-12" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stopColor="currentColor" stopOpacity="0" />
+              <stop offset="0.5" stopColor="white" stopOpacity="0.95" />
+              <stop offset="1" stopColor="currentColor" stopOpacity="0" />
+              <animate
+                attributeName="x1"
+                values="-24;24;-24"
+                dur="5s"
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="x2"
+                values="-12;36;-12"
+                dur="5s"
+                repeatCount="indefinite"
+              />
+            </linearGradient>
+          </defs>
           <path
             d="M3 12h18M9 18h12M3 6h12"
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="2"
+          />
+          <path
+            d="M3 12h18M9 18h12M3 6h12"
+            stroke="url(#menu-icon-shine-gradient)"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            pathLength="1"
           />
         </svg>
       </button>
